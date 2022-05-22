@@ -9,7 +9,7 @@ name: François Charton
 description: Experiments in AI for maths
 
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
-avatar: ({{ site.baseurl }}/images/fc.png)
+avatar: {{ site.baseurl }}/images/fc.png
 # https://github.com/f-charton/f-charton.github.io/blob/master/images/fc.png
 
 #
