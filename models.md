@@ -4,9 +4,9 @@ title: Models
 permalink: /models/
 ---
 
-In all problems, I generate pairs of problems and solutions, encode them as sequences, and use them to train (supervised) sequence to sequence transformers. Models use the "two tower" architecture described in [Attention is all you need](https://arxiv.org/abs/1706.03762): an encoder and a decoder linked by cross-attention layers. Compared to large language models, my transformers are small: they use a few (1 to 8) layers in the encoder and decoder, and (typically) 512 dimensions and 8 attention heads. 
+In all problems, pairs of problems and solutions are generated, encoded as sequences, and used to train (supervised) sequence to sequence transformers. Models use the "two tower" architecture described in [Attention is all you need](https://arxiv.org/abs/1706.03762): an encoder and a decoder linked by cross-attention layers. Compared to large language models, math transformers are small: they use a few (1 to 8) layers in the encoder and decoder, and (typically) 512 dimensions and 8 attention heads. 
 
-For training, the loss is the cross-entropy between model prediction and the correct sequence  (computed at the token level). The models do not understand mathematics, they only predicts sequences. Adam is used as the optimizer, usually with linear warmup and scheduling (inverse square root or cosine).
+Training loss is the cross-entropy between model prediction and the correct sequence (computed at the token level). The models do not understand mathematics, they only predicts sequences. Adam is used as the optimizer, usually with linear warmup and scheduling (inverse square root or cosine).
 
 Trained models are tested on held-out test sets (usually 10 000 examples). A prediction is considered correct if the output of the model can decode into a valid solution (e.g. a number, vector, or matrix of numbers), which solves the problem within a certain tolerance.
 
