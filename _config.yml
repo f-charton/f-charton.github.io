@@ -11,11 +11,6 @@ description: Maths with transformers
 # URL of your avatar or profile pic (you could use your GitHub profile pic)
 avatar: /images/fc.png
 
-collections:
-  archives:
-    output: true
-    permalink: /archives/:path/
-
 #
 # Flags below are optional
 #
