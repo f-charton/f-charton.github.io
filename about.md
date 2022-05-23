@@ -5,9 +5,7 @@ permalink: /about/
 ---
 
 I am a research engineer in Meta AI, working on applying AI (and especially transformers) to problems of mathematics.
-This blog documents miscellaneous experiments, too small to fit on a paper, but interesting nevertheless. 
-
-A description of our models and training procedures can be found [here](/models/). 
+This blog documents miscellaneous experiments, too small to fit on a paper, but interesting nevertheless. A description of our models and training procedures can be found [here](/models/). 
 
 ### Publications on AI for Maths
 * [Deep learning for symbolic mathematics (2019)](https://arxiv.org/abs/1912.01412), with Guillaume Lample: transformers can learn to integrate functions, and solve first and second order ordinary differential equations ([code](https://github.com/facebookresearch/SymbolicMathematics)).
@@ -18,5 +16,5 @@ A description of our models and training procedures can be found [here](/models/
 * [End-to-end symbolic regression with transformers (2022)](https://arxiv.org/abs/2204.10532), with Pierre-Alexandre Kamienny, Stéphane d'Ascoli and Guillaume Lample: transformers can predict functions from their values, first attempt at a model that uses both numeric and symbolic tokens.
 
 ### Interested? 
-contact me
+contact me:
 [fcharton@gmail.com](mailto:fcharton@gmail.com)
