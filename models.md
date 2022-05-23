@@ -18,7 +18,7 @@ Schemes for encoding mathematical expressions are discussed in [Deep learning fo
 
 **Integers (not bounded)** are encoded as a sign ('+' or '-') followed by the representation of their absolute value in base b (typically, b=10 or 1000): -3124 is represented as the sequence '-', '3', '1', '2', '4' in base 10, and '-', '3', '124' in base 1000
 
-**Real numbers** are represented in scientific notation with a certain number of significant digits (typically 3), and encoded as triplet: (sign, mantissa, exponent), mantissa and exponents are bounded integers (encoded as above). -3.14 = -314 . 10^-2 is encoded as '-', '314', 'E-2' (other encodings exist, see the paper on linear algebra)
+**Real numbers** are represented in scientific notation with a certain number of significant digits (typically 3), and encoded as triplet: (sign, mantissa, exponent), mantissa and exponents are bounded integers (encoded as above). -3.14 = -314 . 10^-2 is encoded as '-', '314', 'E-2' 
 
 **Complex numbers** are represented as pairs of real numbers
  
