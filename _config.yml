@@ -86,3 +86,5 @@ exclude:
   - CNAME
 
 theme: jekyll-theme-minimal
+
+excerpt_separator: <!-- excerpt-end -->
