@@ -14,7 +14,7 @@ title: Archive
 {% for post in site.posts %}
 {% assign postyear = post.date | date: "%Y" %}
 {% if postyear == page.year %}
-    {% include postbox.html %}
+    {% include post.html %}
 {% endif %}    
 
 {% endfor %}
