@@ -13,7 +13,7 @@ title: Archive
 
 {% for post in site.posts %}
 {% if post.categories contains page.category or post.category == page.category %}
-    {% include postbox.html %}
+    {% include post.html %}
 {% endif %}    
 
 {% endfor %}
