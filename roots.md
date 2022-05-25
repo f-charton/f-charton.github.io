@@ -19,9 +19,22 @@ Each polynomial $P(x)$ is represented as a sequence of $n+1$ real numbers, and i
 
 ### Models and training
 
-The main architecture is a transformer with 4 layers, 512 dimensions and 8 attention heads in the encoder and decoder. It is trained on a cross-entropy loss, using the Adam optimiser with learning rate $lr=10^-4$, over batches of 64 examples, with linear warmup during the first 1000 optimisation steps, and cosine scheduling (with a very long period of 2,000,000 steps) afterwards. At the end of every peoch (300,000 examples), the models is tested on 10,000 random examples. A prediction is considered correct if it can be decoded as a sequence of $2n$ roots, and the maximal relative prediction error for all roots $\|pred-correct\|/\|correct\|$ is below a tolerance level (5%) 
+The main architecture is a transformer with 4 layers, 512 dimensions and 8 attention heads in the encoder and decoder. It is trained on a cross-entropy loss, using the Adam optimiser with learning rate $lr=10^{-4}$, over batches of 64 examples, with linear warmup during the first 1000 optimisation steps, and cosine scheduling (with a very long period of 2,000,000 steps) afterwards. At the end of every peoch (300,000 examples), the models is tested on 10,000 random examples. A prediction is considered correct if it can be decoded as a sequence of $2n$ roots, and the maximal relative prediction error for all roots $\|pred-correct\|/\|correct\|$ is below a tolerance level (5%).
 
 ### Results
+
+Our best models achieve 61% accuracy of datasets of polynomials for degree 3 to 6. Accuracy saturates after 400 epochs (120 million examples)
+|Degree | Model1 | Model2|
+|---|---|---| 
+|3 | 84 | 86|
+|4 | 73 | 72|
+|5 | 50| 50|
+|6 | 37| 34|
+|Average | 61 | 61|
+
+Comparable accuracies (58 to 60%)
+
+
 
 ### Additional experiments
 
