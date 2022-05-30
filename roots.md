@@ -79,7 +79,7 @@ My main architecture is a sequence to sequence (two-tower) transformer with 4 la
 At the end of every epoch (300,000 examples), the models is evaluated on a random test set on 10,000 random examples (a different one for each epoch). 
 A prediction is considered correct if it can be decoded as a sequence of $n$ roots, and all relative prediction errors $\|pred-correct\|/\|correct\|$, ($pred$ the predicted root, $correct$ the correct value) are below a certain tolerance level (5%). With this **maximal relative error (max-err)** metric, a prediction is correct is all predicted roots fall within 5% of the correct values. 
 
-Two weaker, but meaningful, alternative measures are the **minimal relative error (min-err)**, which decides that a prediction is correct if at least one root is predicted to 5% tolerance, and the **average relative error (avg-err)** the proportion of the $n$ roots predicted within tolerance. These alternative metrics can be turned into practical techniques for finding all roots. By commputing $P(x)$ for predicted roots, one can determine which predictions were correct, divide the polynomial by the corresponding $x-root$ terms, and iterate.
+Two weaker, but meaningful, alternative measures are the **minimal relative error (min-err)**, which decides that a prediction is correct if at least one root is predicted to 5% tolerance, and the **average relative error (avg-err)** the proportion of the $n$ roots predicted within tolerance. These alternative metrics can be turned into practical techniques for finding all roots. By computing $P(x)$ for predicted roots, one can determine which predictions were correct, divide the polynomial by the corresponding ($x-root$) terms, and iterate.
 
 ### Main results
 
