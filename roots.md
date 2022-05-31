@@ -86,18 +86,20 @@ Models trained on a dataset of polynomials of degree 3 to 6 (each degree in equa
 Max-err accuracy drops to 41.4, 27.2 and 14.0% for 2, 1 and 0.5% tolerance. 
 Min-err accuracy is 97.2%, and avg-err accuracy 79.9%: the model recovers all roots 61% of the time, at least one root almost every time (97%), and will correctly predict 80% of the roots on average. 
 
-Max-err accuracy decreases as the degree of the polynomial goes up: from 86% for degree 3 to 36.5 for degree 6 polynomials. However, min-err accuracy and the number of roots correctly precdicted (avg-err + degree) are stable for all degrees. Whereas **predicting all roots** becomes more difficult as the number of roots to be predicted increases, the difficulty of **predicting just a few roots** (a constant number of them) seems constant for all degrees. 
+Max-err accuracy decreases as the degree of the polynomial goes up: from 86% for degree 3 to 36.5 for degree 6 polynomials. However, min-err accuracy is stable for all degrees, and the number of roots correctly precdicted (avg-err + degree) increases slowly. Whereas **predicting all roots** becomes more difficult as the number of roots to be predicted increases, the difficulty of **predicting just a few roots** (a constant number of them) seems constant for all degrees. 
 
 **Table 1 - Accuracy as a function of degree (roots of polynomials of degree 3-6)** 
 |Degree | All roots (max-err) | One root (min-err) | % of roots (avg-err) | # roots predicted |
 |---|---|---|---|---|
-|3 | 86.1 | 97.6 | 91.8 | 2.8 | 
+|3 | 86.1 | 97.6 | 91.2 | 2.7 | 
 |4 | 71.0 | 97.2 | 83.5 | 3.3 | 
-|5 | 49.1| 97.5 | 73.4 | 3.7 | 
-|6 | 36.5| 96.4 | 62.3 |  3.7 | 
+|5 | 49.1| 97.5 | 75.4 | 3.8 | 
+|6 | 36.5| 96.4 | 68.4 |  4.1 | 
 |Average | 61.3 | 97.2 | 79.9 | - | 
 
-Models trained from different data sets (degree 3 to 6, vs only degree 6, vs degree 5 to 8 ...) achieve similar performances
+In my [paper on linear algebra](https://arxiv.org/abs/2112.01898), I had noticed that training models on problems of varying dimensions (e.g. matrices from 5x5 to 10x10) could improve accuracy: a model could not be trained to predict the eigenvalues of 10x10 matrices **only**, but if trained on a mix of matrices of different dimensions (e.g. 5x5 to 15x15), all sizes were learned with high accuracy.  
+
+Tables 2 and 3 compare the accuracies (after about 400 epochs) models trained on different datasets: from sets of polynomials with the same degree (3, 4, 5, 6, 7 and 8), to sets of different degrees (3-4, 3-6, 3-8, 5-6, 5-8). It appears that max-err accuracy (table 2) is independent of the training set: the roots of polynomials of degree 3 are predicted with similar accuracies (around 85%) by models trained on degree 3 polynomials only, or on mixtures of different degrees (3-4, 3-6 or 3-8). The same property holds for degrres 3 to 8.
 
 **Table 2 - max-err accuracy per degree, for different datasets** 
 |Degree | 3 | 4 | 5 | 6 | 7 | 8 | 3-4 | 3-6 | 3-8 | 5-6 | 5-8 |
@@ -106,25 +108,36 @@ Models trained from different data sets (degree 3 to 6, vs only degree 6, vs deg
 | 4 | - | 70.7  | - | - | - | - | 71.8| 71.0| 71.1| -   | -   |
 | 5 | - | - | 50.3  | - | - | - | -   | 49.1| 49.6| 51.2| 49.2|
 | 6 | - | - | - | 36.0  | - | - | -   | 36.5| 36.9| 35.8| 35.7|
-| 7 | - | - | - | - | 18.8. | - | -   | -   | 17.4| -   | 18.8|
-| 8 | - | - | - | - | - | 10.1. | -   | -   |  9.6| -   | 9.0 |
+| 7 | - | - | - | - | 18.8  | - | -   | -   | 17.4| -   | 18.8|
+| 8 | - | - | - | - | - | 10.1  | -   | -   |  9.6| -   | 9.0 |
 
-
+The number of roots predicted, for a given polynomial degree, is independent of the dataset. For degrees larger than 6, it is slightly over 4. 
 
 **Table 3 -  Number of roots predicted for different datasets**
 |Degree | 3 | 4 | 5 | 6 | 7 | 8 | 3-4 | 3-6 | 3-8 | 5-6 | 5-8 |
 |-------|---|---|---|---|---|---|-----|-----|-----|-----|-----|
-| 3 | 84.1  | - | - | - | - | - | 84.5| 2.8 | 85.4| -   | -   | 
-| 4 | - | 70.7  | - | - | - | - | 71.8| 3.3 | 71.1| -   | -   |
-| 5 | - | - | 50.3  | - | - | - | -   | 3.7 | 51.2| 49.2|
-| 6 | - | - | - | 36.0  | - | - | -   | 3.7 | 36.9| 35.8| 35.7|
-| 7 | - | - | - | - | 18.8. | - | -   | -   | 17.4| -   | 18.8|
-| 8 | - | - | - | - | - | 10.1. | -   | -   |  9.6| -   | 9.0 |
+| 3 | 2.7   | - | - | - | - | - | 2.7 | 2.7 | 2.7 | -   | -   | 
+| 4 | - | 3.5   | - | - | - | - | 3.4 | 3.3 | 3.3 | -   | -   |
+| 5 | - | - | 3.8   | - | - | - | -   | 3.8 | 3.7 | 3.8 | 3.7 |
+| 6 | - | - | - | 4.1   | - | - | -   | 4.1 | 4.1 | 4.1 | 4.1 |
+| 7 | - | - | - | - | 4.2   | - | -   | -   | 4.1 | -   | 4.2 |
+| 8 | - | - | - | - | - | 4.1   | -   | -   | 4.0 | -   | 4.1 |
 
+Finally, I compare models trained to predict the roots sorted in decreasing order to models trained to predict roots in random order (table 4). Sorting the roots results in lower losses, and higher accuracy, especially for the larger degrees. 
 
+**Table 4 - Sorted and unsorted roots, max-err accuracy** 
+|Degree | 3-6 sorted | 3-6 unsorted | 3-8 sorted | 3-8 unsorted | 5-8 sorted | 5-8 unsorted |
+|---|---|---|---|---|---|---|
+|3 | 86.1| 87.2 | 85.4 | 85.5 | -    | - | 
+|4 | 71.0| 70.7 | 71.1 | 69.9 | -    | - |
+|5 | 49.1| 47.8 | 49.6 | 49.3 | 49.2 | 48.9 |
+|6 | 36.5| 31.7 | 36.9 | 31.9 | 35.7 | 32.3 |
+|7 | -   | -    | 17.4 | 16.4 | 18.8 | 16.3 |
+|8 | -   | -    | 9.6. |  5.6 |  9.0 | 7.0  |
 
-Accuracy saturates after 400 epochs (120 million examples). Prediction accuracy decreases with the degree of the polynomial, from 84% for degree 6, to 37% for degree 6. The following table compares the performance of our two best 4-layer models, with models 
+### Data usage, and batch size
 
+### Experiments with architecture
 
 **Accuracy as a function of model depth and scheduling** 
 |Degree | 4/4 | 4/4 | 6/6 | 2/2 | 1/1 | 4/4 no scheduling |
