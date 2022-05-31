@@ -146,7 +146,7 @@ Training the models, using batches of 64 examples, to high accuracy requires abo
 |8|63|18.9|
 |12|68|20.4|
 |16|91|27.3|
-|24|120]36|
+|24|120|36|
 |32|157|47.1|
 |48|208|62.4|
 |64|271|81.3|
