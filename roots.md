@@ -83,7 +83,27 @@ Two weaker, but meaningful, alternative measures are the **minimal relative erro
 
 ### Main results
 
-Our best models achieve 61% accuracy of datasets of polynomials for degree 3 to 6. Accuracy saturates after 400 epochs (120 million examples). Prediction accuracy decreases with the degree of the polynomial, from 84% for degree 6, to 37% for degree 6. The following table compares the performance of our two best 4-layer models, with models 
+After more than 400 epochs (120 millions examples), model accuracy (max-err) saturates around 61%, when predicting the roots of polynomials of degree 3 to 6. The model can predict all roots with less than 5% relative error for 61.3% of the polynomials in the test data. Max-err accuracy is 41.4, 27.2 and 14.0% for 2, 1 and 0.5% tolerance. Min-err accuracy is 97.2%, and avg-err accuracy 79.9%. In practice, this means that the model can recover at least one root almost every time (97%), recovers all roots 60% of the time, and will find 80% of the roots on average. 
+
+
+
+Table 1 shows accuracy as a function of test polynomial degree, for our best 4-layer  models.
+
+**Accuracy as a function of degree** 
+|Degree | max-err | min-err | avg-err | # roots predicted |
+|---|---|---|---|---|
+|3 | 86.1 | 97.6 | 91.8 | 2.8 | 
+|4 | 71.0 | 97.2 | 83.5 | 3.3 | 
+|5 | 49.1| 97.5 | 73.4 | 3.7 | 
+|6 | 36.5| 96.4 | 62.3 |  3.7 | 
+|Average | 61.3 | 97.2 | 79.9 | - | 
+
+he roots of polynomials of lower degree prove easier to predict (there are fewer of them). 
+
+As polynomial degree 
+
+
+Accuracy saturates after 400 epochs (120 million examples). Prediction accuracy decreases with the degree of the polynomial, from 84% for degree 6, to 37% for degree 6. The following table compares the performance of our two best 4-layer models, with models 
 
 **Accuracy as a function of model depth and scheduling** 
 |Degree | 4/4 | 4/4 | 6/6 | 2/2 | 1/1 | 4/4 no scheduling |
