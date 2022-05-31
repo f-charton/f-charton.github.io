@@ -137,6 +137,23 @@ Finally, I compare models trained to predict the roots sorted in decreasing orde
 
 ### Data usage, and batch size
 
+Training the models, using batches of 64 examples, to high accuracy requires about 400 epochs, or 120 million examples. This is a very large training set. 
+
+**Table 5 - batch size, number or epochs, and millions of examples, to reach 58% accuracy**
+|Batch size|Epochs|Millions of examples|
+|---|---|---|
+|4|42|12.6|
+|8|63|18.9|
+|12|68|20.4|
+|16|91|27.3|
+|24|120]36|
+|32|157|47.1|
+|48|208|62.4|
+|64|271|81.3|
+|96|333|99.9|
+|128|399|119.7|
+
+
 ### Experiments with architecture
 
 **Accuracy as a function of model depth and scheduling** 
