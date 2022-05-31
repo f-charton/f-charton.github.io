@@ -86,10 +86,10 @@ Models trained on a dataset of polynomials of degree 3 to 6 (each degree in equa
 Max-err accuracy drops to 41.4, 27.2 and 14.0% for 2, 1 and 0.5% tolerance. 
 Min-err accuracy is 97.2%, and avg-err accuracy 79.9%: the model recovers all roots 61% of the time, at least one root almost every time (97%), and will correctly predict 80% of the roots on average. 
 
-Max-err accuracy decreases as the degree of the polynomial goes up: from 86% for degree 3 to 36.5 for degree 6 polynomials. However, min-err accuracy and the number of roots correctly precdicted (avg-err + degree) are stable for all degrees. Whereas **predicting all roots** becomes more difficult as the number of roots to be predicted increases, the difficulty of **predicting just a few roots** (a constant number of them) seems constant for all degrees. I find this intriguing.
+Max-err accuracy decreases as the degree of the polynomial goes up: from 86% for degree 3 to 36.5 for degree 6 polynomials. However, min-err accuracy and the number of roots correctly precdicted (avg-err + degree) are stable for all degrees. Whereas **predicting all roots** becomes more difficult as the number of roots to be predicted increases, the difficulty of **predicting just a few roots** (a constant number of them) seems constant for all degrees. 
 
-**Table 1 - Accuracy as a function of degree** 
-|Degree | max-err | min-err | avg-err | # roots predicted |
+**Table 1 - Accuracy as a function of degree (roots of polynomials of degree 3-6)** 
+|Degree | All roots (max-err) | One root (min-err) | % of roots (avg-err) | # roots predicted |
 |---|---|---|---|---|
 |3 | 86.1 | 97.6 | 91.8 | 2.8 | 
 |4 | 71.0 | 97.2 | 83.5 | 3.3 | 
@@ -99,7 +99,7 @@ Max-err accuracy decreases as the degree of the polynomial goes up: from 86% for
 
 Models trained from different data sets (degree 3 to 6, vs only degree 6, vs degree 5 to 8 ...) achieve similar performances
 
-**Table 2 - max-err accuracy per degree, for different datasets (about 400 epochs)** 
+**Table 2 - max-err accuracy per degree, for different datasets** 
 |Degree | 3 | 4 | 5 | 6 | 7 | 8 | 3-4 | 3-6 | 3-8 | 5-6 | 5-8 |
 |-------|---|---|---|---|---|---|-----|-----|-----|-----|-----|
 | 3 | 84.1  | - | - | - | - | - | 84.5| 86.1| 85.4| -   | -   | 
@@ -110,7 +110,21 @@ Models trained from different data sets (degree 3 to 6, vs only degree 6, vs deg
 | 8 | - | - | - | - | - | 10.1. | -   | -   |  9.6| -   | 9.0 |
 
 
+
+**Table 3 -  Number of roots predicted for different datasets**
+|Degree | 3 | 4 | 5 | 6 | 7 | 8 | 3-4 | 3-6 | 3-8 | 5-6 | 5-8 |
+|-------|---|---|---|---|---|---|-----|-----|-----|-----|-----|
+| 3 | 84.1  | - | - | - | - | - | 84.5| 2.8 | 85.4| -   | -   | 
+| 4 | - | 70.7  | - | - | - | - | 71.8| 3.3 | 71.1| -   | -   |
+| 5 | - | - | 50.3  | - | - | - | -   | 3.7 | 51.2| 49.2|
+| 6 | - | - | - | 36.0  | - | - | -   | 3.7 | 36.9| 35.8| 35.7|
+| 7 | - | - | - | - | 18.8. | - | -   | -   | 17.4| -   | 18.8|
+| 8 | - | - | - | - | - | 10.1. | -   | -   |  9.6| -   | 9.0 |
+
+
+
 Accuracy saturates after 400 epochs (120 million examples). Prediction accuracy decreases with the degree of the polynomial, from 84% for degree 6, to 37% for degree 6. The following table compares the performance of our two best 4-layer models, with models 
+
 
 **Accuracy as a function of model depth and scheduling** 
 |Degree | 4/4 | 4/4 | 6/6 | 2/2 | 1/1 | 4/4 no scheduling |
