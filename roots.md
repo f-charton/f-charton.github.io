@@ -75,7 +75,6 @@ Here is the minimal code for generating polynomials and roots, using the random 
 
 My main architecture is a sequence to sequence (two-tower) transformer with 4 layers, 512 dimensions and 8 attention heads in the encoder and decoder. Models are trained (supervisedly, with teacher forcing) using a cross-entropy loss, over batches of 64 examples, using the Adam optimizer with a learning rate of $lr=5.10^{-5}$, with linear warmup during the first 10,000 optimisation steps, and cosine scheduling (with a very long period of 2,000,000 steps) afterwards. I am using a code base derived from [my paper on dynamic systems](https://github.com/facebookresearch/MathsFromExamples), but default Pytorch implementations for transformers would certainly produce similar results.
 
-
 At the end of every epoch (300,000 examples), the models is evaluated on a random test set on 10,000 random examples (a different one for each epoch). 
 A prediction is considered correct if it can be decoded as a sequence of $n$ roots, and all relative prediction errors $\|pred-correct\|/\|correct\|$, ($pred$ the predicted root, $correct$ the correct value) are below a certain tolerance level (5%). With this **maximal relative error (max-err)** metric, a prediction is correct is all predicted roots fall within 5% of the correct values. 
 
@@ -83,13 +82,13 @@ Two weaker, but meaningful, alternative measures are the **minimal relative erro
 
 ### Main results
 
-After more than 400 epochs (120 millions examples), model accuracy (max-err) saturates around 61%, when predicting the roots of polynomials of degree 3 to 6. The model can predict all roots with less than 5% relative error for 61.3% of the polynomials in the test data. Max-err accuracy is 41.4, 27.2 and 14.0% for 2, 1 and 0.5% tolerance. Min-err accuracy is 97.2%, and avg-err accuracy 79.9%. In practice, this means that the model can recover at least one root almost every time (97%), recovers all roots 60% of the time, and will find 80% of the roots on average. 
+Models trained on a dataset of polynomials of degree 3 to 6 (each degree in equal proportion) reach a max-err accuracy of 61.3% after 400 epochs (120 million examples): all roots can be predicted with less than 5% relative error in more than 61% of the test cases.   
+Max-err accuracy drops to 41.4, 27.2 and 14.0% for 2, 1 and 0.5% tolerance. 
+Min-err accuracy is 97.2%, and avg-err accuracy 79.9%: the model recovers all roots 61% of the time, at least one root almost every time (97%), and will correctly predict 80% of the roots on average. 
 
+Max-err accuracy decreases as the degree of the polynomial goes up: from 86% for degree 3 to 36.5 for degree 6 polynomials. However, min-err accuracy and the number of roots correctly precdicted (avg-err + degree) are stable for all degrees. Whereas **predicting all roots** becomes more difficult as the number of roots to be predicted increases, the difficulty of **predicting just a few roots** (a constant number of them) seems constant for all degrees. I find this intriguing.
 
-
-Table 1 shows accuracy as a function of test polynomial degree, for our best 4-layer  models.
-
-**Accuracy as a function of degree** 
+**Table 1 - Accuracy as a function of degree** 
 |Degree | max-err | min-err | avg-err | # roots predicted |
 |---|---|---|---|---|
 |3 | 86.1 | 97.6 | 91.8 | 2.8 | 
@@ -98,9 +97,17 @@ Table 1 shows accuracy as a function of test polynomial degree, for our best 4-l
 |6 | 36.5| 96.4 | 62.3 |  3.7 | 
 |Average | 61.3 | 97.2 | 79.9 | - | 
 
-he roots of polynomials of lower degree prove easier to predict (there are fewer of them). 
+Models trained from different data sets (degree 3 to 6, vs only degree 6, vs degree 5 to 8 ...) achieve similar performances
 
-As polynomial degree 
+**Table 2 - max-err accuracy per degree, for different datasets (about 400 epochs)** 
+|Degree | 3 | 4 | 5 | 6 | 7 | 8 | 3-4 | 3-6 | 3-8 | 5-6 | 5-8 |
+|-------|---|---|---|---|---|---|-----|-----|-----|-----|-----|
+| 3 | 84.1  | - | - | - | - | - | 84.5| 86.1| 85.4| -   | -   | 
+| 4 | - | 70.7  | - | - | - | - | 71.8| 71.0| 71.1| -   | -   |
+| 5 | - | - | 50.3  | - | - | - | -   | 49.1| 49.6| 51.2| 49.2|
+| 6 | - | - | - | 36.0  | - | - | -   | 36.5| 36.9| 35.8| 35.7|
+| 7 | - | - | - | - | 18.8. | - | -   | -   | 17.4| -   | 18.8|
+| 8 | - | - | - | - | - | 10.1. | -   | -   |  9.6| -   | 9.0 |
 
 
 Accuracy saturates after 400 epochs (120 million examples). Prediction accuracy decreases with the degree of the polynomial, from 84% for degree 6, to 37% for degree 6. The following table compares the performance of our two best 4-layer models, with models 
