@@ -83,12 +83,10 @@ A prediction is considered correct if it can be decoded as a sequence of $n$ roo
 Two weaker, but meaningful, alternative measures are the **minimal relative error (min-err)**, which decides that a prediction is correct if at least one root is predicted to 5% tolerance, and the **average relative error (avg-err)** the proportion of the $n$ roots predicted within tolerance. These alternative metrics can be turned into practical techniques for finding all roots. By computing $P(x)$ for predicted roots, one can determine which predictions were correct, divide the polynomial by the corresponding ($x-root$) terms, and iterate.
 
 ### Main results
+In the main series of experiments, I am training transformers on a set of polynomials of degrees 3 to 6 (each degree sampled in equal proportion). After 400 epochs (120 million examples), the models reach a max-err accuracy of 61.3%: in more than 61% of my test cases, all the roots are predicted to less than 5% relative acccuracy. More precise predictions can be achieves: for 2, 1 and 0.5% tolerance, max-err accuracy is 41.4, 27.2 and 14.0%, higher results could be achieved with more training.
+Min-err accuracy is 97.2%: the model recovers at least one roots almost all the time. Avg-err accuracy is 79.9%: on average, 80% of the roots are correctly predicted.
 
-Models trained on a dataset of polynomials of degree 3 to 6 (each degree in equal proportion) reach a max-err accuracy of 61.3% after 400 epochs (120 million examples): all roots can be predicted with less than 5% relative error in more than 61% of the test cases.   
-Max-err accuracy drops to 41.4, 27.2 and 14.0% for 2, 1 and 0.5% tolerance. 
-Min-err accuracy is 97.2%, and avg-err accuracy 79.9%: the model recovers all roots 61% of the time, at least one root almost every time (97%), and will correctly predict 80% of the roots on average. 
-
-Max-err accuracy decreases as the degree of the polynomial goes up: from 86% for degree 3 to 36.5 for degree 6 polynomials. However, min-err accuracy is stable for all degrees, and the number of roots correctly precdicted (avg-err + degree) increases slowly. Whereas **predicting all roots** becomes more difficult as the number of roots to be predicted increases, the difficulty of **predicting just a few roots** (a constant number of them) seems constant for all degrees. 
+As the degree of the polynomial increases, there are more rootys to predict, and max-err accuracy decreases: from 86.1% for degree 3 to 36.5%  for degree 6. Min)err accuracy, on the other hand, is the same for all degrees, and the number of roots correctly precdicted (avg-err * degree) increases slowly with the degree. In other words, **predicting all roots** is more difficult as the number of roots to be predicted increases, but the difficulty of **predicting one root** and the **number of roots predicted** is constant (or slightly decreasing)for all degrees. 
 
 **Table 1 - Accuracy as a function of degree (roots of polynomials of degree 3-6)** 
 |Degree | All roots (max-err) | One root (min-err) | % of roots (avg-err) | # roots predicted |
@@ -99,10 +97,12 @@ Max-err accuracy decreases as the degree of the polynomial goes up: from 86% for
 |6 | 36.5| 96.4 | 68.4 |  4.1 | 
 |Average | 61.3 | 97.2 | 79.9 | - | 
 
-In my [paper on linear algebra](https://arxiv.org/abs/2112.01898), I had noticed that training models on problems of varying dimensions (e.g. matrices from 5x5 to 10x10) could improve accuracy: a model could not be trained to predict the eigenvalues of 10x10 matrices **only**, but if trained on a mix of matrices of different dimensions (e.g. 5x5 to 15x15), all sizes were learned with high accuracy.  
+### Varying the training set
 
-Tables 2 and 3 compare the accuracies (after about 400 epochs) models trained on different datasets: from sets of polynomials with the same degree (3, 4, 5, 6, 7 and 8), to sets of different degrees (3-4, 3-6, 3-8, 5-6, 5-8). It appears that max-err accuracy (table 2) is independent of the training set: the roots of polynomials of degree 3 are predicted with similar accuracies (around 85%) by models trained on degree 3 polynomials only, or on mixtures of different degrees (3-4, 3-6 or 3-8). The same property holds for degrres 3 to 8.
+In my [paper on linear algebra](https://arxiv.org/abs/2112.01898), I observed that training models on sets mixing problems of different sizes could improve accuracy. A model trained on 10x10 matrices only could not learn their eigenvalues, but a model trained on a mixture of 5x5 to 15x15 matrices would learn eigenvalues for all dimensions (with high accuracy).
 
+In this second series of experiments, I compare models trained on sets of polynomials of same degree (six datasets with degree 3, 4, 5, 6, 7 and 8), and mixtures of polynomials of different degrees (3-4, 3-6, 3-8, 5-6 5-8, all uniformly sampled with respect to the degree). All modesl are trained for about 400 epochs. Table 2 summarize the max-err accuracy (proportion of polynomials with all roots predicted correctly), for all degrees in the test set. For each degree (line in Table 2) accuracies are constant, and independent of the training set, e.g. all degree 3 polynomials are predicted with 85% accuracy.
+ 
 **Table 2 - max-err accuracy per degree, for different datasets** 
 |Degree | 3 | 4 | 5 | 6 | 7 | 8 | 3-4 | 3-6 | 3-8 | 5-6 | 5-8 |
 |-------|---|---|---|---|---|---|-----|-----|-----|-----|-----|
@@ -113,7 +113,7 @@ Tables 2 and 3 compare the accuracies (after about 400 epochs) models trained on
 | 7 | - | - | - | - | 18.8  | - | -   | -   | 17.4| -   | 18.8|
 | 8 | - | - | - | - | - | 10.1  | -   | -   |  9.6| -   | 9.0 |
 
-The number of roots predicted, for a given polynomial degree, is independent of the dataset. For degrees larger than 6, it is slightly over 4. 
+The same observation holds for the number of roots predicted. As degree increases, the number of roots seem to saturate around 4.
 
 **Table 3 -  Number of roots predicted for different datasets**
 |Degree | 3 | 4 | 5 | 6 | 7 | 8 | 3-4 | 3-6 | 3-8 | 5-6 | 5-8 |
@@ -125,7 +125,9 @@ The number of roots predicted, for a given polynomial degree, is independent of 
 | 7 | - | - | - | - | 4.2   | - | -   | -   | 4.1 | -   | 4.2 |
 | 8 | - | - | - | - | - | 4.1   | -   | -   | 4.0 | -   | 4.1 |
 
-Finally, I compare models trained to predict the roots sorted in decreasing order to models trained to predict roots in random order (table 4). Sorting the roots results in lower losses, and higher accuracy, especially for the larger degrees. 
+### Sorted and unsorted roots
+
+In my basic train sets, the root of the poynomial are sorted in decreasing order. Tabel 4 compares their accuracy with models trains on datasets where the roots are in random order. For small degrees (3 and 4), root order has no impact on accuracy. Sorting the roots does improve accuracy for larger degrees. 
 
 **Table 4 - Sorted and unsorted roots, max-err accuracy** 
 |Degree | 3-6 sorted | 3-6 unsorted | 3-8 sorted | 3-8 unsorted | 5-8 sorted | 5-8 unsorted |
@@ -139,7 +141,9 @@ Finally, I compare models trained to predict the roots sorted in decreasing orde
 
 ### Data usage, and batch size
 
-Training the models, using batches of 64 examples, to high accuracy requires about 400 epochs, or 120 million examples. This is a very large training set. 
+So far, all models were trained using batches of 64 examples, and needed 400 epochs, or 120 million samples, to achieve high accuracy. This is a very large training set. Better data efficiency is possible by reducing the batch size. Table 5 indicates the number of epochs and examples needed to train a model to 58% (max-err) accuracy (over polynomials of degree 3 to 6), for different batch sizes. With batches of 4 examples the mode needs 12.6 million examples, almost 10 times less that when using batches of 128. Note that smaller batches result in slower learning, since the optimizer, a slow operation, is called more often.
+
+Final accuracy tends to decrrease with larger batches: models with 256, 512 and 1024 batches never reached 58% accuracy. In these experiments, the besst accuracies were achieved with batch size between 32 and 64. 
 
 **Table 5 - batch size, number or epochs, and millions of examples, to reach 58% accuracy**
 |Batch size|Epochs|Millions of examples|
