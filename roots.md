@@ -4,7 +4,7 @@ title: Computing the roots of polynomials
 ---
 TLDR: Transformers can be trained to predict the roots of polynomials from their coefficients: 
 
-In this post, I discuss the capacity of transformers to learn to compute the roots of real polynomials, from examples only. 
+Many authors have observed that neural networks, and in particular transformers, struggle with basic arithmetic, and exact computation. Last year, I showed that they can learn approximate computations, trained on operations
 
 ### The maths
 A **polynomial** of degree $n$ with real coefficients is a function of the form : $P(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0$, with all $a_i$ in $\mathbb{R}$). A degree $n$ polynomial $P$ has $n$ **roots** : values $x_i$ such that $P(x_i) = 0$, that allow to  **factorize** $P$ as $P(x) = a_n (x-x_1)(x-x_2)\dots(x-x_n)$ (several roots may have the same value). When all the coefficients ($a_i$) are real, the roots are either real numbers, or pairs of conjugate complex numbers, ($a+ib$, $a-ib$), $a$, $b$ $\in$ $\mathbb R$. This post focuses on predicting the roots of a polynomial from its coefficients (i.e. the $x_i$ from the $a_i$). 
