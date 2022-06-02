@@ -4,7 +4,7 @@ title: Computing the roots of polynomials
 ---
 TLDR: Transformers can be trained to predict the roots of polynomials from their coefficients: 
 
-Many authors have observed that neural networks, and in particular transformers, struggle with basic arithmetic, and exact computation. Last year, I showed that they can learn approximate computations, trained on operations
+Many research has shown that neural networks struggle with basic arithmetic and exact computation. Last year, I showed that they can learn approximate computations, on [problems of linear algebra](https://arxiv.org/abs/2112.01898). This post studies another numerical problem: finding the roots of polynomials. I am using the same architectures, encodings and techniques, as in my linear algebra paper. 
 
 ### The maths
 A **polynomial** of degree $n$ with real coefficients is a function of the form : $P(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0$, with all $a_i$ in $\mathbb{R}$). A degree $n$ polynomial $P$ has $n$ **roots** : values $x_i$ such that $P(x_i) = 0$, that allow to  **factorize** $P$ as $P(x) = a_n (x-x_1)(x-x_2)\dots(x-x_n)$ (several roots may have the same value). When all the coefficients ($a_i$) are real, the roots are either real numbers, or pairs of conjugate complex numbers, ($a+ib$, $a-ib$), $a$, $b$ $\in$ $\mathbb R$. This post focuses on predicting the roots of a polynomial from its coefficients (i.e. the $x_i$ from the $a_i$). 
@@ -127,7 +127,7 @@ The same observation holds for the number of roots predicted. As degree increase
 
 ### Sorted and unsorted roots
 
-In my basic train sets, the root of the poynomial are sorted in decreasing order. Tabel 4 compares their accuracy with models trains on datasets where the roots are in random order. For small degrees (3 and 4), root order has no impact on accuracy. Sorting the roots does improve accuracy for larger degrees. 
+In my basic train sets, the root of the poynomial are sorted in decreasing order. Tabel 4 compares their accuracy with models trained on datasets where the roots are left in random order. For small degrees (3 and 4), root order has no impact on accuracy. For larger degrees, sorting the roots brings a small gain in accuracy. This result confirms an observation we made in [our paper on recurrences](https://arxiv.org/abs/2201.04600): training from simplified expresssions did not improve accuracy. Here, not sorting the roots means that the "correct solution" (i.e. the output during supervised training) is only correct up to a permutation of the $n$ roots. Intuitively, this should make the training **much harder*** (and in fact, the cross entropy loss is larger), that it is not the case is an intriguing finding. 
 
 **Table 4 - Sorted and unsorted roots, max-err accuracy** 
 |Degree | 3-6 sorted | 3-6 unsorted | 3-8 sorted | 3-8 unsorted | 5-8 sorted | 5-8 unsorted |
