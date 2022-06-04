@@ -4,7 +4,11 @@ title: Computing the roots of polynomials
 ---
 TLDR: Transformers can be trained to predict the roots of polynomials from their coefficients: 
 
-Many research has shown that neural networks struggle with basic arithmetic and exact computation. Last year, I showed that they can learn approximate computations, on [problems of linear algebra](https://arxiv.org/abs/2112.01898). This post studies another numerical problem: finding the roots of polynomials. I am using the same architectures, encodings and techniques, as in my linear algebra paper. 
+It has been observed on many occasions that neural networks struggle with basic arithmetic and exact computations. Language models, such as transformers, perform poorly on a task like multiplication of two large numbers (represented as sequences of digits in some number base). 
+In a [paper](https://arxiv.org/abs/2112.01898) published last year, I showed that transformers could be trained to predict, from examples only, the approximate solutions of various problems of linear algebra, from basic operations on matrices, to eigendecomposition and inversion. 
+
+In this post, I present results on another numerical problem: finding the roots of polynomials, a slightly more advanced problem. 
+I am using the same architectures and encoding as in my paper on linear algebra. 
 
 ### The maths
 A **polynomial** of degree $n$ with real coefficients is a function of the form : $P(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0$, with all $a_i$ in $\mathbb{R}$). A degree $n$ polynomial $P$ has $n$ **roots** : values $x_i$ such that $P(x_i) = 0$, that allow to  **factorize** $P$ as $P(x) = a_n (x-x_1)(x-x_2)\dots(x-x_n)$ (several roots may have the same value). When all the coefficients ($a_i$) are real, the roots are either real numbers, or pairs of conjugate complex numbers, ($a+ib$, $a-ib$), $a$, $b$ $\in$ $\mathbb R$. This post focuses on predicting the roots of a polynomial from its coefficients (i.e. the $x_i$ from the $a_i$). 
@@ -125,6 +129,8 @@ The same observation holds for the number of roots predicted. As degree increase
 | 7 | - | - | - | - | 4.2   | - | -   | -   | 4.1 | -   | 4.2 |
 | 8 | - | - | - | - | - | 4.1   | -   | -   | 4.0 | -   | 4.1 |
 
+### Larger degrees
+
 ### Sorted and unsorted roots
 
 In my basic train sets, the root of the poynomial are sorted in decreasing order. Tabel 4 compares their accuracy with models trained on datasets where the roots are left in random order. For small degrees (3 and 4), root order has no impact on accuracy. For larger degrees, sorting the roots brings a small gain in accuracy. This result confirms an observation we made in [our paper on recurrences](https://arxiv.org/abs/2201.04600): training from simplified expresssions did not improve accuracy. Here, not sorting the roots means that the "correct solution" (i.e. the output during supervised training) is only correct up to a permutation of the $n$ roots. Intuitively, this should make the training **much harder*** (and in fact, the cross entropy loss is larger), that it is not the case is an intriguing finding. 
@@ -160,7 +166,7 @@ Final accuracy tends to decrrease with larger batches: models with 256, 512 and 
 |128|399|119.7|
 
 
-### Experiments with architecture
+### Impact of model dimension
 
 **Accuracy as a function of model depth and scheduling** 
 |Degree | 4/4 | 4/4 | 6/6 | 2/2 | 1/1 | 4/4 no scheduling |
@@ -171,6 +177,10 @@ Final accuracy tends to decrrease with larger batches: models with 256, 512 and 
 |6 | 37| 34| 35 |  32 | 25 | 28 |
 |Average | 61 | 61| 60 | 60 | 56 | 55 |
 
+### Asymmetric architectures
+
+
+### Shared layers and universal transformers
 
 
 ### Discussion
