@@ -190,14 +190,21 @@ Final accuracy tends to decrrease with larger batches: models with 256, 512 and 
 
 ### Impact of model dimension
 
-**Accuracy as a function of model depth and scheduling** 
-|Degree | 4/4 | 4/4 | 6/6 | 2/2 | 1/1 | 4/4 no scheduling |
-|---|---|---|---|---|---|---| 
-|3 | 84 | 86| 85| 87 | 85 | 82 |
-|4 | 73 | 72| 71 | 72 | 68 | 66 |
-|5 | 50| 50| 50 | 48 | 43 | 45 |
-|6 | 37| 34| 35 |  32 | 25 | 28 |
-|Average | 61 | 61| 60 | 60 | 56 | 55 |
+**Accuracy as a function of model depth, dimension and attention heads** 
+|   | 1/1 | 2/2 | 4/4 | 6/6 | 8/8 |
+|---|---|---|---|---|---|
+|240 dimensions 8 heads  |  | |  |  |  | 
+|240 dimensions 10 heads |  | |  |  |  | 
+|240 dimensions 12 heads |  | |  |  |  | 
+|240 dimensions 16 heads |  | |  |  |  | 
+|480 dimensions 8 heads  |  | |  |  |  |
+|480 dimensions 10 heads |  | |  |  |  |
+|480 dimensions 12 heads |  | |  |  |  |
+|480 dimensions 16 heads |  | |  |  |  |
+|720 dimensions 8 heads  |  | |  |  |  | 
+|720 dimensions 10 heads |  | |  |  |  | 
+|720 dimensions 12 heads |  | |  |  |  | 
+|720 dimensions 16 heads |  | |  |  |  | 
 
 ### Asymmetric architectures
 
