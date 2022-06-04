@@ -176,3 +176,4 @@ Final accuracy tends to decrrease with larger batches: models with 256, 512 and 
 ### Discussion
 
 These results are of little interest for mathematicians, or people who actually need to compute the roots of polynomials. We already have efficient algorithms for this. 
+
