@@ -88,10 +88,10 @@ Two weaker, but meaningful, alternative measures are the **minimal relative erro
 
 ### Main results
 In the main series of experiments, I am training transformers on a set of polynomials of degrees 3 to 6 (each degree sampled in equal proportion). After 400 epochs (120 million examples), the models reach a max-err accuracy of 61.3%: all roots are predicted to less than 5% relative accuracy for more than 61% of the (random) test cases. Higher precision can be achieved: I have 41.4, 27.2 and 14.0% accuracy at 2, 1 and 0.5% tolerance, and better performance could be reached with more training (the learning curves still increase after 400 epochs). Note also that there exist very efficient (numerical) techniques to improve approximate solutions.  
-
 Min-err accuracy is 97.2%: the model recovers at least one roots almost all the time. Avg-err accuracy is 79.9%: on average, 80% of the roots are correctly predicted.
 
-As the degree of the polynomial increases, there are more roots to predict, and max-err accuracy decreases: from 86.1% for degree 3 to 36.5%  for degree 6. Min)err accuracy, on the other hand, is the same for all degrees, and the number of roots correctly precdicted (avg-err * degree) increases slowly with the degree. In other words, **predicting all roots** is more difficult as the number of roots to be predicted increases, but the difficulty of **predicting one root** and the **number of roots predicted** is constant (or slightly decreasing)for all degrees. 
+Max-err accuracy decreases as the degree of the polynomial grows, from 86.1% for degree 3 to 36.5%  for degree 6. The task becomes more difficult since there are more roots to predict. On the other hand, min-err accuracy is the same for all degrees, and the number of roots correctly precdicted (avg-err * degree) increases slowly with the degree. 
+In other words, **predicting all roots** is more difficult as the number of roots to be predicted increases, but the difficulty of **predicting one root** and the **number of roots predicted** is constant (or slightly decreasing)for all degrees. 
 
 **Table 1 - Accuracy as a function of degree (roots of polynomials of degree 3-6)** 
 |Degree | All roots (max-err) | One root (min-err) | % of roots (avg-err) | # roots predicted |
