@@ -134,7 +134,9 @@ All the results in tables 2 and 3 were obtained after training on the same numbe
 
 ### Larger degrees
 
-Results scale to larger degrees: table 4 presents six models, trained on polynomials of degree 5, 8, 10, 15, 20 and 25. 
+Table 4 presents models trained on polynomials of degree 5, 8, 10, 15, 20 and 25. As the degree increases, predicting all roots becomes a very hard task. Max-err accuracy drops to zero after degree 10. Still, the models can predict at least one root in over 92% of the test cases, and prefict an average of 3 to 4 roots for all degrees.
+
+In other words, whereas **predicting all roots** does not scale to large degrees, **predicting some roots** does not seem to be constrained. 
 
 **Table 4 - Accuracy as a function of degree** 
 |Degree | All roots (max-err) | One root (min-err) | % of roots (avg-err) | # roots predicted |
@@ -148,9 +150,14 @@ Results scale to larger degrees: table 4 presents six models, trained on polynom
 
 ### Sorted and unsorted roots
 
-In my basic train sets, the root of the poynomial are sorted in decreasing order. Tabel 4 compares their accuracy with models trained on datasets where the roots are left in random order. For small degrees (3 and 4), root order has no impact on accuracy. For larger degrees, sorting the roots brings a small gain in accuracy. This result confirms an observation we made in [our paper on recurrences](https://arxiv.org/abs/2201.04600): training from simplified expresssions did not improve accuracy. Here, not sorting the roots means that the "correct solution" (i.e. the output during supervised training) is only correct up to a permutation of the $n$ roots. Intuitively, this should make the training **much harder*** (and in fact, the cross entropy loss is larger), that it is not the case is an intriguing finding. 
+In my basic train sets, the root of the poynomial are sorted in decreasing order. Table 5 compares their accuracy with models trained on datasets where the roots are left in random order. For small degrees (3 and 4), root order has no impact on accuracy. For larger degrees, sorting the roots brings a small gain in accuracy. This result is slighty counter-intuitive: when training on unsorted roots, the model sees one out of $n$ possible permutations of the $n$ roots. This results in a higher cross-entropy loss, and should make the training much harder.
 
-**Table 4 - Sorted and unsorted roots, max-err accuracy** 
+This confirms an observation from [our paper on recurrences](https://arxiv.org/abs/2201.04600): training the model on simplified expressions (i.e. $2x+1$ vs $x+2+x-1$) made no difference in accuracy. 
+
+The discussion on the importance of simplification has been ongoing since my first paper ([on integration](https://arxiv.org/abs/1912.01412)). In a review, [Ernest Davis commented](https://arxiv.org/abs/1912.05752) that working from simplified functions made the problem easier ("No integration without simplification!"), and I considered that a fair point. The results from the paper on recurrences, which suggested that simplification was orthogonal to the problem we were solving (and therefore had no bearing on it), came as a surprise. This result on sorting roots seems to confirm it (or, at least, go in the same direction).
+
+
+**Table 5 - Sorted and unsorted roots, max-err accuracy** 
 |Degree | 3-6 sorted | 3-6 unsorted | 3-8 sorted | 3-8 unsorted | 5-8 sorted | 5-8 unsorted |
 |---|---|---|---|---|---|---|
 |3 | 86.1| 87.2 | 85.4 | 85.5 | -    | - | 
