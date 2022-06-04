@@ -4,10 +4,10 @@ title: Computing the roots of polynomials
 ---
 TLDR: Transformers can be trained to predict the roots of polynomials from their coefficients: 
 
-It has been observed that neural networks struggle with basic arithmetic and exact computations. For instance, transformers perform poorly on a task like multiplication of two large numbers (represented as sequences of digits in some number base). 
-In a [paper](https://arxiv.org/abs/2112.01898) published last year, I showed that transformers could be trained to predict, from examples only, the approximate solutions of various problems of linear algebra, from basic operations on matrices to eigendecomposition and inversion. 
+It has been observed that neural networks struggle with basic arithmetic and exact computations. For instance, transformers perform poorly on a task like the multiplication of two large numbers (represented as sequences of digits in some number base). 
+In a [paper](https://arxiv.org/abs/2112.01898) published last year, I showed that transformers could be trained to predict, from examples only, the approximate solutions of various problems of linear algebra, from basic operations on matrices to eigendecomposition and inversion. Exact arithmetic might be hard, but numerical computation can be learned. 
 
-Here are results on a slightly more advanced numerical problem: finding the roots of polynomials.
+This post features additional results on a slightly more advanced numerical problem: finding the roots of polynomials.
 I am using the same architectures and encoding as in my paper on linear algebra. 
 
 ### The maths
@@ -140,11 +140,11 @@ Results scale to larger degrees: table 4 presents six models, trained on polynom
 |Degree | All roots (max-err) | One root (min-err) | % of roots (avg-err) | # roots predicted |
 |---|---|---|---|---|
 |5 | 49.1| 97.5 | 75.4 | 3.8 | 
-|8 | 36.5| 96.4 | 68.4 |  4.1 | 
-|10 | 36.5| 96.4 | 68.4 |  4.1 | 
-|15 | 36.5| 96.4 | 68.4 |  4.1 | 
-|20 | 36.5| 96.4 | 68.4 |  4.1 | 
-|25 | 36.5| 96.4 | 68.4 |  4.1 | 
+|8 | 10.1| 95.3 | 51.1 |  4.1 | 
+|10 | 0.5| 92.1 | 33.4 |  3.3 | 
+|15 | 0| 92.4 | 22.6 |  3.4 | 
+|20 | 0| 92.7 | 15.9 |  3.2 | 
+|25 | 0| 95.5 | 15.3 |  3.8 | 
 
 ### Sorted and unsorted roots
 
