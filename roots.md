@@ -169,11 +169,11 @@ The discussion on the importance of simplification has been ongoing since my fir
 
 ### Data usage, and batch size
 
-So far, all models were trained using batches of 64 examples, and needed 400 epochs, or 120 million samples, to achieve high accuracy. This is a very large training set. Better data efficiency is possible by reducing the batch size. Table 5 indicates the number of epochs and examples needed to train a model to 58% (max-err) accuracy (over polynomials of degree 3 to 6), for different batch sizes. With batches of 4 examples the mode needs 12.6 million examples, almost 10 times less that when using batches of 128. Note that smaller batches result in slower learning, since the optimizer, a slow operation, is called more often.
+So far, all models were trained using batches of 64 examples, and needed 400 epochs, or 120 million samples, to achieve high accuracy. This is a very large training set. Better data efficiency is possible by reducing the batch size. Table 6 indicates the number of epochs and examples needed to train a model to 58% (max-err) accuracy (over polynomials of degree 3 to 6), for different batch sizes. With batches of 4 examples the mode needs 12.6 million examples, almost 10 times less that when using batches of 128. Note that smaller batches result in slower learning, since the optimizer, a slow operation, is called more often.
 
 Final accuracy tends to decrrease with larger batches: models with 256, 512 and 1024 batches never reached 58% accuracy. In these experiments, the besst accuracies were achieved with batch size between 32 and 64. 
 
-**Table 5 - batch size, number or epochs, and millions of examples, to reach 58% accuracy**
+**Table 6 - batch size, number or epochs, and millions of examples, to reach 58% accuracy**
 |Batch size|Epochs|Millions of examples|
 |---|---|---|
 |4|42|12.6|
@@ -193,18 +193,19 @@ Final accuracy tends to decrrease with larger batches: models with 256, 512 and 
 **Accuracy as a function of model depth, dimension and attention heads** 
 |   | 1/1 | 2/2 | 4/4 | 6/6 | 8/8 |
 |---|---|---|---|---|---|
-|240 dimensions 8 heads  |  | |  |  |  | 
-|240 dimensions 10 heads |  | |  |  |  | 
-|240 dimensions 12 heads |  | |  |  |  | 
-|240 dimensions 16 heads |  | |  |  |  | 
-|480 dimensions 8 heads  |  | |  |  |  |
-|480 dimensions 10 heads |  | |  |  |  |
-|480 dimensions 12 heads |  | |  |  |  |
-|480 dimensions 16 heads |  | |  |  |  |
-|720 dimensions 8 heads  |  | |  |  |  | 
-|720 dimensions 10 heads |  | |  |  |  | 
-|720 dimensions 12 heads |  | |  |  |  | 
-|720 dimensions 16 heads |  | |  |  |  | 
+|240 dimensions 8 heads  | 48.4 | 58.4 | 60.6 | 60.1 | 59.0 | 
+|---|---|---|---|---|---|
+|480 dimensions 6 heads  | -    | 59.3 | 60.4 | 59.0 | - | 
+|480 dimensions 8 heads  | 52.2 | 60.5 | 60.6 | 59.7 | 58.5 |
+|480 dimensions 10 heads | -    | 60.2 | 60.1 | 59.3 | - |
+|480 dimensions 12 heads | -    | 60.5 | 60.0 | 59.0 | - |
+|480 dimensions 16 heads | -    | 60.7 | 60.5 | 59.4 | - |
+|---|---|---|---|---|---|
+|720 dimensions 6 heads  | -    | 60.1 | 60.1 | 58.6 | - | 
+|720 dimensions 8 heads  | 54.9 | 60.5 | 60.1 | 59.3 | 57.8 | 
+|720 dimensions 10 heads | -    | 60.7 | 60.3 | 58.4 | - | 
+|720 dimensions 12 heads | -    | 60.2 | 59.8 | 58.8 | - | 
+|720 dimensions 16 heads | -    | 60.6 | 59.5 | 58.9 | - | 
 
 ### Asymmetric architectures
 
