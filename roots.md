@@ -196,13 +196,11 @@ Model size has little impact on performance. Apart from 1-layer transformers, wh
 |   | 1/1 | 2/2 | 4/4 | 6/6 | 8/8 |
 |---|---|---|---|---|---|
 |240 dimensions 8 heads  | 48.4 | 58.4 | 60.6 | 60.1 | 59.0 | 
-|---|---|---|---|---|---|
 |480 dimensions 6 heads  | -    | 59.3 | 60.4 | 59.0 | - | 
 |480 dimensions 8 heads  | 52.2 | 60.5 | 60.6 | 59.7 | 58.5 |
 |480 dimensions 10 heads | -    | 60.2 | 60.1 | 59.3 | - |
 |480 dimensions 12 heads | -    | 60.5 | 60.0 | 59.0 | - |
 |480 dimensions 16 heads | -    | 60.7 | 60.5 | 59.4 | - |
-|---|---|---|---|---|---|
 |720 dimensions 6 heads  | -    | 60.1 | 60.1 | 58.6 | - | 
 |720 dimensions 8 heads  | 54.9 | 60.5 | 60.1 | 59.3 | 57.8 | 
 |720 dimensions 10 heads | -    | 60.7 | 60.3 | 58.4 | - | 
@@ -214,12 +212,11 @@ Model size has little impact on performance. Apart from 1-layer transformers, wh
 Asymmetric models, with a deep encoder and shallow decoder, have proven their worth for linear algebra. 
 
 |   | 240 dimensions | | | 480 dimensions | | |
+|---|---|---|---|---|---|---|
 |Encoder   | 4 heads  | 6 heads | 8 heads | 4 heads  | 6 heads | 8 heads | 
-|---|---|---|---|---|---|
 |480 dimensions 8 heads  | 52.2 | 60.5 | 60.6 | 59.7 | 58.5 |
 |480 dimensions 10 heads | -    | 60.2 | 60.1 | 59.3 | - |
 |480 dimensions 12 heads | -    | 60.5 | 60.0 | 59.0 | - |
-|---|---|---|---|---|---|
 |720 dimensions 8 heads  | 54.9 | 60.5 | 60.1 | 59.3 | 57.8 | 
 |720 dimensions 10 heads | -    | 60.7 | 60.3 | 58.4 | - | 
 |720 dimensions 12 heads | -    | 60.2 | 59.8 | 58.8 | - | 
