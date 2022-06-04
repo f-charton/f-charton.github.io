@@ -130,7 +130,21 @@ The same observation holds for the number of roots predicted. As degree increase
 | 7 | - | - | - | - | 4.2   | - | -   | -   | 4.1 | -   | 4.2 |
 | 8 | - | - | - | - | - | 4.1   | -   | -   | 4.0 | -   | 4.1 |
 
+All the results in tables 2 and 3 were obtained after training on the same number of examples (about 120 million). This means that a model trained on polynomials of degree 3 to 8 saw about 20 million examples of each degrees, yet achieve similar results to models trained on one degree, over 120 million examples. 
+
 ### Larger degrees
+
+Results scale to larger degrees: table 4 presents six models, trained on polynomials of degree 5, 8, 10, 15, 20 and 25. 
+
+**Table 4 - Accuracy as a function of degree** 
+|Degree | All roots (max-err) | One root (min-err) | % of roots (avg-err) | # roots predicted |
+|---|---|---|---|---|
+|5 | 49.1| 97.5 | 75.4 | 3.8 | 
+|8 | 36.5| 96.4 | 68.4 |  4.1 | 
+|10 | 36.5| 96.4 | 68.4 |  4.1 | 
+|15 | 36.5| 96.4 | 68.4 |  4.1 | 
+|20 | 36.5| 96.4 | 68.4 |  4.1 | 
+|25 | 36.5| 96.4 | 68.4 |  4.1 | 
 
 ### Sorted and unsorted roots
 
@@ -183,6 +197,17 @@ Final accuracy tends to decrrease with larger batches: models with 256, 512 and 
 
 ### Shared layers and universal transformers
 
+The [universal transformer](https://arxiv.org/abs/1807.03819) is a shared layer model: one layer (in the encoder and/or the decoder) is iterated through several times, by feeding its output back into its input. This can allow for more complex calculations than what can be done with one transformer layer only, while keeping the number of trainable parameters low. The looping mechanism also constrains the inner layer of the transformer to stick to the same representation for their input and output. In the original paper, the number of iterations was either fixed, or controlled by a technique called [Adaptive Computation Time](https://arxiv.org/abs/1603.08983) (ACT). While experimenting with universal transformers, I have noticed that ACT was very hard to train (i.e. very unstable with respect to model initialization), and that fixingthe number of loops to a large value usually did not work. 
+
+I am using here a technique proposed by [Csordas et al.](https://arxiv.org/abs/2110.07732), which adds a copy-gate (in pure LSTM fashion) to the output of the self-attention mechanism in the shared layer. Depending on the token and output of the attention mechanism, the token will either be processed by the layers, or just copied (and possibly fed back into the shared layer). 
+
+I experiment on polynomials of degrees 3 to 6, with transformers with 1 or 2 layers, and one shared layer in the encoder and/or the decoder. Shared layers are gated, and iterated though 4, 8 or 12 times. 
+
+Over several problems, I have noticed that whereas large numbers of iterations 
+
+
+
+Instead of deeper transformers, I experimented with shared 
 
 ### Discussion
 
