@@ -130,7 +130,7 @@ The same observation holds for the number of roots predicted. As degree increase
 | 7 | - | - | - | - | 4.2   | - | -   | -   | 4.1 | -   | 4.2 |
 | 8 | - | - | - | - | - | 4.1   | -   | -   | 4.0 | -   | 4.1 |
 
-All the results in tables 2 and 3 were obtained after training on the same number of examples (about 120 million). This means that a model trained on polynomials of degree 3 to 8 saw about 20 million examples of each degrees, yet achieve similar results to models trained on one degree, over 120 million examples. 
+All the results in tables 2 and 3 were obtained after training on the same number of examples (about 120 million). This means that a model trained on polynomials of degree 3 to 8 saw about 20 million examples of each degrees, yet achieve similar results to models trained on polynomials of one degree, with 120 million examples. This clearly demonstrates the benefit of mixing degrees in the datasets.
 
 ### Larger degrees
 
