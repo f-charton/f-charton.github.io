@@ -121,6 +121,7 @@ This observation remains valid for larger degrees (table 1b). Predicting all roo
 |15 | 0| 92.8 | 22.6 |  3.4 | 
 |20 | 0| 92.7 | 15.9 |  3.2 | 
 |25 | 0| 95.5 | 15.6 |  3.9 | 
+
 (note: 400 epochs for degree 5 and 8, 200 for 10, 120 for 15 and 60 for 20 and 25)
 
 
@@ -176,11 +177,15 @@ The debate on the importance of simplification has been ongoing since my first p
 
 ### Data usage, and batch size
 
-So far, all models were trained using batches of 64 examples, and needed 400 epochs, or 120 million samples, to achieve high accuracy. This is a very large training set. Better data efficiency is possible by reducing the batch size. Table 6 indicates the number of epochs and examples needed to train a model to 58% (max-err) accuracy (over polynomials of degree 3 to 6), for different batch sizes. With batches of 4 examples the mode needs 12.6 million examples, almost 10 times less that when using batches of 128. Note that smaller batches result in slower learning, since the optimizer, a slow operation, is called more often.
+So far, all my models achieve high accuracy after about 400 epochs, or 120 million samples. This is a very large training set. As noted, training on mixture of polynomials of different degrees can improve data efficiency: a model trained on 3 to 8-degree polynomials predicts the roots of a 6-degree polynomial just as well as one trained on 6-degree polynomials only.
 
-Final accuracy tends to decrrease with larger batches: models with 256, 512 and 1024 batches never reached 58% accuracy. In these experiments, the besst accuracies were achieved with batch size between 32 and 64. 
+Better data efficiency is also possible by reducing the batch size. All models are trained using batches of 64 examples. Table 5 indicates the number of epochs and examples needed to train a model to 58% (max-err) accuracy over polynomials of degree 3 to 6, for different batch sizes. Small batches results in much slower learning, since the optimizer, a costly operation, is called more often. Yet, only 12.6 million examples are needed with batches of 4, and 120 millions with batches 128. I tried larger batches (256, 512 and 1024) but they never reached 58% accuracy. 
 
-**Table 6 - batch size, number or epochs, and millions of examples, to reach 58% accuracy**
+When training data is generated, data efficiency is not an issue, but these results suggest that if we were learning from limited "real world" data, for instance learning a black-box computation from a system, or having to request all our data from an external (and slow) API, reducing batch size would be in order. 
+
+Note that the results in table 5 are for 58% accuracy, if we consider the best possible accuracy, batch size of 32 and 64 seem optimal. 
+
+**Table 5 - batch size, number or epochs, and millions of examples, to reach 58% accuracy**
 |Batch size|Epochs|Millions of examples|
 |---|---|---|
 |4|42|12.6|
@@ -194,12 +199,11 @@ Final accuracy tends to decrrease with larger batches: models with 256, 512 and 
 |96|333|99.9|
 |128|399|119.7|
 
-
-### Impact of model dimension
+### Model architecture: impact of dimension
 
 Model size has little impact on performance. Apart from 1-layer transformers, which prove too shallow to achieve good performance, 2, 4, 6 and 8 layers models result in the same accuracy (in table 7, the larger models are a little lower, because they take longer to train). Embedding dimension and the number of attention heads also see to have little impact on accuracy. 
 
-**Table 7 - max-err accuracy as a function of model depth, dimension and attention heads** 
+**Table 6 - max-err accuracy as a function of model depth, dimension and attention heads** 
 |   | 1/1 | 2/2 | 4/4 | 6/6 | 8/8 |
 |---|---|---|---|---|---|
 |240 dimensions 8 heads  | 48.4 | 58.4 | 60.6 | 60.1 | 59.0 | 
