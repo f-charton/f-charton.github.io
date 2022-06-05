@@ -4,23 +4,29 @@ title: Computing the roots of polynomials
 ---
 TLDR: Transformers can be trained to predict the roots of polynomials from their coefficients: 
 
-It has been observed that neural networks struggle with basic arithmetic and exact computations. For instance, transformers perform poorly on a task like the multiplication of two large numbers (represented as sequences of digits in some number base). 
-In a [paper](https://arxiv.org/abs/2112.01898) published last year, I showed that transformers could be trained to predict, from examples only, the approximate solutions of various problems of linear algebra, from basic operations on matrices to eigendecomposition and inversion. Exact arithmetic might be hard, but numerical computation can be learned. 
+It has been observed by many authors that neural networks struggle with basic arithmetic. For instance, transformers perform poorly on a task like the multiplication of two large numbers (represented as sequences of digits in some number base). This has long been considered a "hard" limitation of language models (and, for some authors, a proof that hybrid systems, mixing rule-based and gradient-based techniques, were needed.
 
-This post features additional results on a slightly more advanced numerical problem: finding the roots of polynomials.
-I am using the same architectures and encoding as in my paper on linear algebra. 
+In a [paper published last year](https://arxiv.org/abs/2112.01898), I showed that transformers can learn to perform approximate computations from examples only. They can predict the solutions of various problems of linear algebra, from basic (arithmetic) operations on matrices to advanced (non linear) computations, like eigen decomposition and inversion. 
+
+This post features additional results, involving a slightly more advanced numerical problem: finding the roots of polynomials. 
+I am using the same architectures and encoding as in my paper on linear algebra.
 
 ### The maths
-A **polynomial** of degree $n$ with real coefficients is a function of the form : $P(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0$, with all $a_i$ in $\mathbb{R}$). A degree $n$ polynomial $P$ has $n$ **roots** : values $x_i$ such that $P(x_i) = 0$, that allow to  **factorize** $P$ as $P(x) = a_n (x-x_1)(x-x_2)\dots(x-x_n)$ (roots can be multiple, i.e. have the same value). When all the coefficients ($a_i$) are real, the roots are either real numbers, or pairs of conjugate complex numbers, ($a+ib$, $a-ib$), $a$, $b$ $\in$ $\mathbb R$. In these experiments, we are predicting the roots of a polynomial from its coefficients (i.e. the $x_i$ from the $a_i$). 
+A **polynomial** of degree $n$ with real coefficients is a function of the form : $P(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0$, with all $a_i$ in $\mathbb{R}$). A degree $n$ polynomial $P$ has $n$ **roots** : values $x_i$ such that $P(x_i) = 0$, that allow to  **factorize** $P$ as $P(x) = a_n (x-x_1)(x-x_2)\dots(x-x_n)$. The roots can be multiple, i.e. we can have $x_i=x_j$ for different values of $i$ and $j$. When all the coefficients $a_i$ are real, the roots are either real numbers, or pairs of conjugate complex numbers, ($a+ib$, $a-ib$), with $a$, $b$ $\in$ $\mathbb R$. 
 
-For $n\leq 4$, formulas allow to compute the roots of a polynomial from its coefficients. For instance, the roots of a degree 2 polynomial $P(x) = ax^2+bx+c$ can be computed as $x_0=\frac{ -b + \sqrt{b^2-4ac}}{2a}$ and $x_1=\frac{-b-\sqrt{b^2-4ac}}{2a}$ if $b^2-4ac>=0$, and $\frac{-b+i\sqrt{4ac-b^2}}{2a}$ and $\frac{-b-i\sqrt{4ac-b^2}}{2a}$ if $b^2-4ac<0$. For $n > 4$, it was proven (by Galois and Abel) that no such formula (involving radicals) can be found. There are, on the other hand, numerical algorithms to compute approximate values of the roots.
+We want to predict the roots of a polynomial from its coefficients (i.e. the $x_i$ from the $a_i$). 
+
+For $n\leq 4$, there exists formulas $x_i=f(a_1,a_2,...a_n)$. For instance, the roots of a degree 2 polynomial $P(x) = ax^2+bx+c$ can be computed as $x_0=\frac{ -b + \sqrt{b^2-4ac}}{2a}$ and $x_1=\frac{-b-\sqrt{b^2-4ac}}{2a}$ if $b^2-4ac>=0$, and $\frac{-b+i\sqrt{4ac-b^2}}{2a}$ and $\frac{-b-i\sqrt{4ac-b^2}}{2a}$ if $b^2-4ac<0$. 
+However, it was proven (by Galois and Abel), that no such general formula, involving common operations and radicals, can exist for $n > 4$. But there are numerical algorithms to compute approximate values of the roots.
+
+Most existing algorithms (Newton, Halley, Laguerre) compute one root $x_i$ at a time. The polynomial is then divided by the factor $(x-x_i)$, and the process is repeated. Techniques exist (e.g. Aberth) to compute all roots in one step. Here, I train transformers to predict all roots.
 
 ### Encoding the problem
-Transformers process sequences. The input polynomial is encoded as a sequence of $n+2$ numbers: the (integer) degree and the $n+1$ real coefficients. Degrees are represented as symbolic tokens ('N1' to 'N100'), and real numbers are rounded to three significant digits, written in scientific notation, and encoded as sequences of three tokens: sign ('+' or '-'), mantissa (from '0' to '999'), and exponent (from 'E-100' to 'E100'). See my [paper on linear algebra](https://arxiv.org/abs/2112.01898) for more details (this is the P1000 encoding). For a polynomial of degree $n$, the input sequence has $3n+4$ tokens.
+Transformers process sequences, and the first step in using them is to rewrite the problem and solution as sequences of tokens. Here, the input is a $n$ degree polynomial, encoded as a sequence of $n+2$ numbers: the (integer) degree and the $n+1$ real coefficients. The degree is represented as a symbolic tokens (from 'N1' to 'N100'). Real coefficients are rounded to three significant digits, written in scientific notation, and encoded as sequences of three tokens: sign ('+' or '-'), mantissa (from '0' to '999'), and exponent (from 'E-100' to 'E100'). This is the P10 encoding from my [paper on linear algebra](https://arxiv.org/abs/2112.01898). For a polynomial of degree $n$, the input sequence has $3n+4$ tokens.
 
-The $n$ output roots are encoded as a sequence of $2n$ real numbers (the real and imaginary parts of the $n$ roots), encoded on three tokens each, and preceded by a symbolic token defining the length of the sequence ($2n$). The roots of a polynomial of degree $n$ are represented as a sequence of $6n+1$ tokens. Overall, the models use a vocabulary of about 1120 tokens.
+The $n$ output roots are encoded as a sequence of $2n$ real numbers: the real and imaginary parts of the $n$ roots. They are encoded as before: a symbolic token defining the length of the sequeunce ($2n$), and the $2n$ real numbers, each represented by three tokens (sign, mantissa, exponent). For a polynomial of degree $n$, the output sequence has length $6n+1$.
 
-Here is some minimal Python code for encoding real numbers, and sequences of reals or complex numbers.
+Overall, the vocabulary has about 1120 tokens. Here is some minimal Python code for encoding real numbers, and sequences of reals or complex numbers.
 
     def write_float(self, value):
         precision = self.float_precision # significant digts - 1
@@ -143,8 +149,8 @@ In other words, whereas **predicting all roots** does not scale to large degrees
 |---|---|---|---|---|
 |5 | 49.1| 97.5 | 75.4 | 3.8 | 
 |8 | 10.1| 95.3 | 51.1 |  4.1 | 
-|10 | 0.5| 92.1 | 33.4 |  3.3 | 
-|15 | 0| 92.4 | 22.6 |  3.4 | 
+|10 | 0.6| 93.1 | 34.4 |  3.4 | 
+|15 | 0| 92.8 | 22.6 |  3.4 | 
 |20 | 0| 92.7 | 15.9 |  3.2 | 
 |25 | 0| 95.5 | 15.3 |  3.8 | 
 
