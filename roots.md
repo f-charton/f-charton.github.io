@@ -199,8 +199,6 @@ Note that the results in table 5 are for 58% accuracy, if we consider the best p
 |96|333|99.9|
 |128|399|119.7|
 
-
-
 ### Impact of model size
 
 Our default model has 512 dimensions, 4 layers and 8 attention heads. Table 6 presents max-err accuracy after 300-500 epochs, for different model sizes: 1 to 8 layers, 240 to 720 dimensions, and 6 to 16 heads (note: the transformer implementation I use demands that dimension is a multiple of the number of heads, I choose multiples of 240 for the dimensions so as to test 6, 8, 10, 12 and 16 heads).
@@ -248,7 +246,7 @@ To control the loops, I am using a technique proposed by [Csordas et al.](https:
 
 I experiment on polynomials of degrees 3 to 6, with transformers with 1 or 2 layers, and one shared layer in the encoder and/or the decoder. Shared layers are gated, and iterated though 4, 8 or 12 times. Encoders and decoder have 512 dimensions and 8 attention heads.
 
-Only transformers with a shared encoder and no shared decoder seem to learn. With models with a shared decoder, the cross-entropy loss on predicted sequences is reduced at training, but max-err accuracy never reaches 1%, and min-err accuracy stays around 10%. All models with shared encoder achieve a max-err accuracy between 60.2 and 61.6% after 400 epochs, on par with our best symmetric models. Table 8 presents detailed results. Hyper parameters have little impact on performance.
+Only transformers with a shared encoder and no shared decoder seem to learn. With models with a shared decoder, the cross-entropy loss on predicted sequences is reduced at training, but max-err accuracy never reaches 1%, and min-err accuracy stays around 10%. All models with shared encoder achieve a max-err accuracy between 60.2 and 61.6% after 400 epochs, on par with the best symmetric models. Table 8 presents detailed results. Hyper parameters have little impact on performance.
 
 **Table 8 - Universal transformers (shared layer in encoder only)**
 |Encoder layers |Shared layer |Max loops | Decoder layers| max-err | min-err | avg-err | 
@@ -271,6 +269,10 @@ Only transformers with a shared encoder and no shared decoder seem to learn. Wit
 
 
 ### Discussion and conclusions
+
+
+
+There are algorithms for finding the roots of polynomials, and the purpose of this work is not to replace them. 
 
 These results are of little interest for mathematicians, or people who actually need to compute the roots of polynomials. We already have efficient algorithms for this. 
 
