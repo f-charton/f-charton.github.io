@@ -155,15 +155,13 @@ All the results in tables 2 and 3 were obtained from datasets of similar size (a
 
 ### Sorted and unsorted roots
 
-In the basic train sets, the root in the output are sorted in decreasing order. To each input polynomial corresponds a unique output, that is presented at training. What if the roots were not sorted? Then, for a degree $n$ polynomial, there would be $n!$ possible sequences of roots, and the model would be trained on one (selected randomly). Intuitively, I would have thought that sorting the roots helped the model, and that the unsorted task would be much harder.
+In the basic train sets, the root in the output are sorted in decreasing order: to each input polynomial corresponds the unique output that is presented at training. If the roots were not sorted, there would be $n!$ possible outputs for a degree $n$ polynomial, and the model would be trained on one, selected randomly. Intuitively, this should lead to a much harder task.
 
-Table 4 compares max-err accuracy (our "hardest" metric) for different degrees, on three different datasets, for models trained from sorted and unsorted roots. The evaluation procedure does not change: predicted roots are sorted before relative errors are computed. For small degrees (3 and 4), root order has no impact on accuracy. For larger degrees, sorting the roots brings a small gain in accuracy. 
+Table 4 compares max-err accuracy (our "hardest" metric) on three different datasets, for models trained from sorted and unsorted roots. The evaluation procedure does not change: predicted roots are sorted before relative errors are computed. On the unsorted samples, the training loss is much higher, but sorting makes little difference in accuracy. In fact, for small degrees (3 and 4), root order has no impact on accuracy. For larger degrees, accuracy is improved by sorting the roots, but models trained on unsorted roots still perform pretty well (for instance, their min-err and n-roots accuracy is unchanged).
 
-This result is slighty counter-intuitive: when training on unsorted roots, the model sees one out of $n$ possible permutations of the $n$ roots. This results in a higher cross-entropy loss, and should make the training much harder.
+This confirms an observation from [our paper on recurrences](https://arxiv.org/abs/2201.04600): training the model on simplified or unsimplified expressions (e.g. $2x+1$ vs $x+2+x-1$) made no difference in accuracy. 
 
-This confirms an observation from [our paper on recurrences](https://arxiv.org/abs/2201.04600): training the model on simplified expressions (i.e. $2x+1$ vs $x+2+x-1$) made no difference in accuracy. 
-
-The discussion on the importance of simplification has been ongoing since my first paper ([on integration](https://arxiv.org/abs/1912.01412)). In a review, [Ernest Davis commented](https://arxiv.org/abs/1912.05752) that working from simplified functions made the problem easier ("No integration without simplification!"), and I considered that a fair point. The results from the paper on recurrences, which suggested that simplification was orthogonal to the problem we were solving (and therefore had no bearing on it), came as a surprise. This result on sorting roots seems to confirm it (or, at least, go in the same direction).
+The debate on the importance of simplification has been ongoing since my first paper ([on integration](https://arxiv.org/abs/1912.01412)). In a review, [Ernest Davis commented](https://arxiv.org/abs/1912.05752) that working from simplified functions made the problem easier ("No integration without simplification!"). Back then, I considered this a fair point. The results from the paper on recurrences, which suggested that simplification was orthogonal to the problem we were solving (and therefore had no bearing on it), came as a surprise. This result on sorting roots seems to confirm it (or, at least, go in the same direction).
 
 
 **Table 4 - Sorted and unsorted roots, max-err accuracy** 
