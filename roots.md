@@ -244,9 +244,15 @@ The [universal transformer](https://arxiv.org/abs/1807.03819) is a shared layer 
 
 To control the loops, I am using a technique proposed by [Csordas et al.](https://arxiv.org/abs/2110.07732), which adds a copy-gate (in LSTM fashion) to the output of the self-attention mechanism in the shared layer. Depending on the token and output of the attention mechanism, the token will either be processed by the shared layer, or just copied (i.e. that loop is skipped for this token). 
 
-I experiment on polynomials of degrees 3 to 6, with transformers with 1 or 2 layers, and one shared layer in the encoder and/or the decoder. Shared layers are gated, and iterated though 4, 8 or 12 times. 
+I experiment on polynomials of degrees 3 to 6, with transformers with 1 or 2 layers, and one shared layer in the encoder and/or the decoder. Shared layers are gated, and iterated though 4, 8 or 12 times. Encoders and decoder have 512 dimensions and 8 attention heads.
 
-A first observation is that only transformers with a shared encoder seem to learn. A shared decoder achieves close to zero accuracy. This confirms the previous observation on asymmetric architectures: we need a shallow decoder, and a deep encoder
+Only transformers with a shared encoder and no shared decoder seem to learn. With models with a shared decoder, the cross-entropy loss on predicted sequences is reduced at training, but max-err accuracy never reaches 1%, and min-err accuracy stays around 10%. All models with shared encoder achiece a max-err accuracy between 60.2 and 61.6% after 400 epochs, on par with our best symmetric models. Table 8 presents detailed results. 
+
+
+
+**Table 8 - Universal transformers (shared layer in encoder only)**
+
+achieves close to zero accuracy. This confirms the previous observation on asymmetric architectures: we need a shallow decoder, and a deep encoder
 
 ### Discussion
 
