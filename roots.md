@@ -270,25 +270,14 @@ Only transformers with a shared encoder and no shared decoder seem to learn. Wit
 
 ### Discussion and conclusions
 
-The main result of this research is that transformers can be trained, from examples only, to find the roots of polynomials. After linear algebra, this is a second example of an advanced non linear computation that can be learned by a transformer.
+Transformers can be trained, from examples only, to find the roots of polynomials. Whereas finding approximation to all roots at once becomes difficult as the degree increase, trained models can find at least one root in more than 95% of the cases, and usually find 3 or 4 at once. 
+After linear algebra, this is a second example of an advanced nonlinear computation that can be learned by a transformer.
 
-This could be turned into a factorization algorithm: on average, the transformer discovers 3 to 4 correct roots at every inference steps. By checking the roots (i.e. verifying that $P(x_i)\approx 0$) and dividing P by the factors $x-x_i$, we could factorize a n-degree polynomial in about $n/3$ steps. Note, however, that **if we know in advance** that we need to find the roots of a polynomial, using an existing numerical algorithm is always a better option. 
+As with linear algebra, I am not advocating replacing existing algorithms by transformer-based techniques. 
 
-
-
-On average, when predicting the $n$ roots of a polynomial of degree $n$, 3 to 4 roots are correct. Dividing by the roots and iterating, this would find all roots in about $n/3$ inference steps.
-
-This can be done with relatively small transformers: with 2 to 4 layers, and it seems that  
+: when the problem to be solved is already known (I am given a polynomial and asked to find its roots), nothing beats "packed routines". 
 
 
-
-Whereas all roots can usually not be recovered when the degree of the polynomial becomes large, a small number of them 
-
-Predicting all the roots does not scale with the degree of the polyno
-
-There are algorithms for finding the roots of polynomials, and the purpose of this work is not to replace them. 
-
-These results are of little interest for mathematicians, or people who actually need to compute the roots of polynomials. We already have efficient algorithms for this. 
 
 
 
