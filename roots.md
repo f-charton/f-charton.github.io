@@ -24,7 +24,7 @@ Most existing algorithms (Newton, Halley, Laguerre) compute one root $x_i$ at a 
 ### Encoding the problem
 Transformers process sequences, and the first step in using them is to rewrite the problem and solution as sequences of tokens. Here, the input is a $n$ degree polynomial, encoded as a sequence of $n+2$ numbers: the (integer) degree and the $n+1$ real coefficients. The degree is represented as a symbolic tokens (from 'N1' to 'N100'). Real coefficients are rounded to three significant digits, written in scientific notation, and encoded as sequences of three tokens: sign ('+' or '-'), mantissa (from '0' to '999'), and exponent (from 'E-100' to 'E100'). This is the P10 encoding from my [paper on linear algebra](https://arxiv.org/abs/2112.01898). For a polynomial of degree $n$, the input sequence has $3n+4$ tokens.
 
-The $n$ output roots are encoded as a sequence of $2n$ real numbers: the real and imaginary parts of the $n$ roots. They are encoded as before: a symbolic token defining the length of the sequeunce ($2n$), and the $2n$ real numbers, each represented by three tokens (sign, mantissa, exponent). For a polynomial of degree $n$, the output sequence has length $6n+1$.
+The $n$ output roots are encoded as a sequence of $2n$ real numbers: the real and imaginary parts of the $n$ roots. They are encoded as before: a symbolic token defining the length of the sequence ($2n$), and the $2n$ real numbers, each represented by three tokens (sign, mantissa, exponent). For a polynomial of degree $n$, the output sequence has length $6n+1$.
 
 Overall, the vocabulary has about 1120 tokens. Here is some minimal Python code for encoding real numbers, and sequences of reals or complex numbers.
 
@@ -240,17 +240,13 @@ Table 7 presents the performance of asymmetric architectures, with 4 to 6 layers
 
 ### Shared layers and universal transformers
 
-The [universal transformer](https://arxiv.org/abs/1807.03819) is a shared layer model: one layer (in the encoder and/or the decoder) is iterated through several times, by feeding its output back into its input. This can allow for more complex calculations than what can be done with one transformer layer only, while keeping the number of trainable parameters low. The looping mechanism also constrains the inner layer of the transformer to stick to the same representation for their input and output. In the original paper, the number of iterations was either fixed, or controlled by a technique called [Adaptive Computation Time](https://arxiv.org/abs/1603.08983) (ACT). While experimenting with universal transformers, I have noticed that ACT was very hard to train (i.e. very unstable with respect to model initialization), and that fixingthe number of loops to a large value usually did not work. 
+The [universal transformer](https://arxiv.org/abs/1807.03819) is a shared layer model: one layer (in the encoder and/or the decoder) is iterated through several times, by feeding its output back into its input. This can allow for more complex calculations than what can be done with one transformer layer only, while keeping the number of trainable parameters low. The looping mechanism also constrains the inner layer of the transformer to keep the representation of their input and output compatible. In the original paper, the number of iterations was either fixed, or controlled by a technique called [Adaptive Computation Time](https://arxiv.org/abs/1603.08983) (ACT). Experimenting with universal transformers, I found ACT to be hard to train (i.e. very unstable with respect to model initialization), and that having a large, and fixed, number of loops usually did not work. 
 
-I am using here a technique proposed by [Csordas et al.](https://arxiv.org/abs/2110.07732), which adds a copy-gate (in pure LSTM fashion) to the output of the self-attention mechanism in the shared layer. Depending on the token and output of the attention mechanism, the token will either be processed by the layers, or just copied (and possibly fed back into the shared layer). 
+To control the loops, I am using a technique proposed by [Csordas et al.](https://arxiv.org/abs/2110.07732), which adds a copy-gate (in LSTM fashion) to the output of the self-attention mechanism in the shared layer. Depending on the token and output of the attention mechanism, the token will either be processed by the shared layer, or just copied (i.e. that loop is skipped for this token). 
 
 I experiment on polynomials of degrees 3 to 6, with transformers with 1 or 2 layers, and one shared layer in the encoder and/or the decoder. Shared layers are gated, and iterated though 4, 8 or 12 times. 
 
-Over several problems, I have noticed that whereas large numbers of iterations 
-
-
-
-Instead of deeper transformers, I experimented with shared 
+A first observation is that only transformers with a shared encoder seem to learn. A shared decoder achieves close to zero accuracy. This confirms the previous observation on asymmetric architectures: we need a shallow decoder, and a deep encoder
 
 ### Discussion
 
