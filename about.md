@@ -5,9 +5,9 @@ permalink: /about/
 ---
 
 I am a research engineer in Meta AI, working on applying AI (and especially transformers) to problems of mathematics.
-This blog presents unpublished results, not worth a research paper but interesting nevertheless. I intend to update it monthly (see [my twitter account](https://twitter.com/f_charton) for announcements).
+This blog presents unpublished results, not really worth a research paper in my opinion, but interesting nevertheless. I intend to update it every other month (see [my twitter account](https://twitter.com/f_charton) for announcements).
 
-Each experiment documents an attempt to use transformers to solve a specific math problem. I usually document the problem, the data generation, and model evaluation procedure, the main results and a few lessons learned. I tend to reuse the same code base, derived from [the code for our paper on dynamical systems](https://github.com/facebookresearch/MathsFromExamples), and will eventually open source it. A high level description of the models and training procedures can be found [here](/models/).
+Each experiment documents an attempt to use transformers to solve a specific math problem. I will describe the problem, the data generation, and model evaluation procedure, the main results, some ablation experiments and a few lessons learned. I tend to reuse the same code base, derived from [the code for our paper on dynamical systems](https://github.com/facebookresearch/MathsFromExamples), and will eventually open source it. A high level description of the models and training procedures can be found [here](/models/).
 
 ### My publications on AI for Maths
 
