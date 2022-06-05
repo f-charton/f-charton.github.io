@@ -97,8 +97,9 @@ For the main experiments, transformers are trained on a set of polynomials of de
 
 Min-err accuracy is 97.2%: the model almost always recovers at least one root. Finally, avg-err accuracy is 79.9%: on the whole test set, 4 roots out of 5 are correctly predicted.
 
-Max-err accuracy decreases as the degree of the polynomial grows, from 86.1% for degree 3 to 36.5%  for degree 6. The task becomes more difficult since there are more roots to predict. On the other hand, min-err accuracy is the same for all degrees, and the number of roots correctly precdicted (avg-err * degree) increases slowly with the degree. 
-In other words, **predicting all roots** is more difficult as the number of roots to be predicted increases, but the difficulty of **predicting one root** and the **number of roots predicted** is constant (or slightly decreasing)for all degrees. 
+As the degree of the polynomial increas, max-err accuracy drops, from 86.1% for degree 3 to 36.5%  for degree 6. This comes to no surprise. As the number of roots to predict within tolerance increases, the task becomes more difficult. On the other hand, min-err accuracy and the number of roots correctly predicted (n-roots) are independent of the degree (n-root slightly increases with the degree).
+
+In other words, while  **all** roots becomes more difficult as the degree (and the number of roots to be predicted) increases, the model capability to predict **at least one** root (and in fact three to four), keeps constant as degree grows. 
 
 **Table 1 - Accuracy as a function of degree (roots of polynomials of degree 3-6)** 
 |Degree | All roots (max-err) | One root (min-err) | % of roots (avg-err) | # roots predicted |
@@ -109,7 +110,21 @@ In other words, **predicting all roots** is more difficult as the number of root
 |6 | 36.5| 96.4 | 68.4 |  4.1 | 
 |Average | 61.3 | 97.2 | 79.9 | - | 
 
-### Varying the training set
+This observation remains valid for larger degrees (table 1b). Predicting all roots becomes impossible for degrees higher than 10, and max-err accuracy drops to zero. But all models can predict one root in 93% of the test cases, and on average, 3 to 4 roots are correctly predicted for all degrees.
+
+**Table 1b - Larger degrees** 
+|Degree | All roots (max-err) | One root (min-err) | % of roots (avg-err) | # roots predicted  (n-roots)|
+|---|---|---|---|---|
+|5 | 49.1| 97.5 | 75.4 | 3.8 | 
+|8 | 10.1| 95.3 | 51.1 |  4.1 | 
+|10 | 0.6| 93.1 | 34.7 |  3.5 | 
+|15 | 0| 92.8 | 22.6 |  3.4 | 
+|20 | 0| 92.7 | 15.9 |  3.2 | 
+|25 | 0| 95.5 | 15.6 |  3.9 | 
+(note: 400 epochs for degree 5 and 8, 200 for 10, 120 for 15 and 60 for 20 and 25)
+
+
+### Different training sets
 
 In my [paper on linear algebra](https://arxiv.org/abs/2112.01898), I observed that training models on sets mixing problems of different sizes could improve accuracy. A model trained on 10x10 matrices only could not learn their eigenvalues, but a model trained on a mixture of 5x5 to 15x15 matrices would learn eigenvalues for all dimensions (with high accuracy).
 
@@ -139,21 +154,7 @@ The same observation holds for the number of roots predicted. As degree increase
 
 All the results in tables 2 and 3 were obtained after training on the same number of examples (about 120 million). This means that a model trained on polynomials of degree 3 to 8 saw about 20 million examples of each degrees, yet achieve similar results to models trained on polynomials of one degree, with 120 million examples. This clearly demonstrates the benefit of mixing degrees in the datasets.
 
-### Larger degrees
 
-Table 4 presents models trained on polynomials of degree 5, 8, 10, 15, 20 and 25. As the degree increases, predicting all roots becomes a very hard task. Max-err accuracy drops to zero after degree 10. Still, the models can predict at least one root in over 92% of the test cases, and prefict an average of 3 to 4 roots for all degrees.
-
-In other words, whereas **predicting all roots** does not scale to large degrees, **predicting some roots** does not seem to be constrained. 
-
-**Table 4 - Accuracy as a function of degree** 
-|Degree | All roots (max-err) | One root (min-err) | % of roots (avg-err) | # roots predicted |
-|---|---|---|---|---|
-|5 | 49.1| 97.5 | 75.4 | 3.8 | 
-|8 | 10.1| 95.3 | 51.1 |  4.1 | 
-|10 | 0.6| 93.1 | 34.4 |  3.4 | 
-|15 | 0| 92.8 | 22.6 |  3.4 | 
-|20 | 0| 92.7 | 15.9 |  3.2 | 
-|25 | 0| 95.5 | 15.3 |  3.8 | 
 
 ### Sorted and unsorted roots
 
