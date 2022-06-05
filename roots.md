@@ -246,15 +246,29 @@ To control the loops, I am using a technique proposed by [Csordas et al.](https:
 
 I experiment on polynomials of degrees 3 to 6, with transformers with 1 or 2 layers, and one shared layer in the encoder and/or the decoder. Shared layers are gated, and iterated though 4, 8 or 12 times. Encoders and decoder have 512 dimensions and 8 attention heads.
 
-Only transformers with a shared encoder and no shared decoder seem to learn. With models with a shared decoder, the cross-entropy loss on predicted sequences is reduced at training, but max-err accuracy never reaches 1%, and min-err accuracy stays around 10%. All models with shared encoder achiece a max-err accuracy between 60.2 and 61.6% after 400 epochs, on par with our best symmetric models. Table 8 presents detailed results. 
-
-
+Only transformers with a shared encoder and no shared decoder seem to learn. With models with a shared decoder, the cross-entropy loss on predicted sequences is reduced at training, but max-err accuracy never reaches 1%, and min-err accuracy stays around 10%. All models with shared encoder achieve a max-err accuracy between 60.2 and 61.6% after 400 epochs, on par with our best symmetric models. Table 8 presents detailed results. Hyper parameters have little impact on performance.
 
 **Table 8 - Universal transformers (shared layer in encoder only)**
+|Encoder layers |Shared layer |Max loops | Decoder layers| max-err | min-err | avg-err | 
+|---|---|---|---|---|---|---|
+|1  | 1| 4 | 1| 60.8 | 97.2 | 79.7 | 
+|1  | 1| 8 | 1| 60.9 | 97.2 | 79.8 | 
+|1  | 1| 12 | 1| 61.0 | 97.4 | 79.9 | 
+|2  | 1| 4 | 1| 60.8 | 97.0 | 79.5 | 
+|2  | 1| 4 | 2| 61.3 | 97.1 | 79.9 | 
+|2  | 1| 8 | 1 |60.6 | 97.2 | 79.6 | 
+|2  | 1| 8 | 2 |61.0 | 97.1 | 79.7 | 
+|2  | 1| 12 | 1 |61.1 | 97.1 | 79.8 | 
+|2  | 1| 12 | 2 |61.1 | 97.2 | 79.7 | 
+|2  | 2| 4 | 1| 61.1 | 97.2 | 80.0 | 
+|2  | 2| 4 | 2| 61.3 | 97.1 | 79.7 | 
+|2  | 2| 8 | 1 |61.4 | 97.3 | 79.6 | 
+|2  | 2| 8 | 2 |61.6 | 97.2 | 79.9 | 
+|2  | 2| 12 | 1 |60.7 | 97.2 | 79.7 | 
+|2  | 2| 12 | 2 |60.6 | 97.0 | 79.3 | 
 
-achieves close to zero accuracy. This confirms the previous observation on asymmetric architectures: we need a shallow decoder, and a deep encoder
 
-### Discussion
+### Conclusions
 
 These results are of little interest for mathematicians, or people who actually need to compute the roots of polynomials. We already have efficient algorithms for this. 
 
