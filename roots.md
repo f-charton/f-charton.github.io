@@ -117,7 +117,7 @@ This observation remains valid for larger degrees (table 1b). Predicting all roo
 |---|---|---|---|---|
 |5 | 49.1| 97.5 | 75.4 | 3.8 | 
 |8 | 10.1| 95.3 | 51.1 |  4.1 | 
-|10 | 0.6| 93.1 | 34.7 |  3.5 | 
+|10 | 0.6| 93.1 | 34.9 |  3.5 | 
 |15 | 0| 92.8 | 22.6 |  3.4 | 
 |20 | 0| 92.7 | 15.9 |  3.2 | 
 |25 | 0| 95.5 | 15.6 |  3.9 | 
@@ -224,16 +224,17 @@ Apart for 1-layer models, which prove too shallow, model depth, dimension and nu
 
 In the [graph](https://arxiv.org/abs/2112.03588) and linear algebra paper, I have found that asymmetric models, with a deep encoder and shallow decoder, proved efficient. For matrix inversion, the hardest problem from linear algebra, the best models had 6 layers in the encoder layer, and only one in the decoder.
 
-
-|   | 240 dimensions | | | 480 dimensions | | |
-|---|---|---|---|---|---|---|
-|Encoder   | 4 heads  | 6 heads | 8 heads | 4 heads  | 6 heads | 8 heads | 
-|480 dimensions 8 heads  | 52.2 | 60.5 | 60.6 | 59.7 | 58.5 |
-|480 dimensions 10 heads | -    | 60.2 | 60.1 | 59.3 | - |
-|480 dimensions 12 heads | -    | 60.5 | 60.0 | 59.0 | - |
-|720 dimensions 8 heads  | 54.9 | 60.5 | 60.1 | 59.3 | 57.8 | 
-|720 dimensions 10 heads | -    | 60.7 | 60.3 | 58.4 | - | 
-|720 dimensions 12 heads | -    | 60.2 | 59.8 | 58.8 | - | 
+**Table 7 - max-err and min-err accuracy for some asymmetric architectures**
+|Encoder layers |Encoder dimensions |Encoder heads |Decoder layers | Decoder dimensions |Decoder heads | max-err | min-err | 
+|---|---|---|---|---|---|---|---|
+|6  | 720| 12 | 1 | 240 | 4 | 62.0 | 97.3 |
+|6  | 720| 12 | 1 | 480 | 4 | 61.6 | 97.2 |
+|4  | 720| 12 | 1 | 240 | 4 | 61.8 | 97.3 |
+|4  | 720| 8  | 1 | 480 | 8 | 61.3 | 97.3 |
+|6  | 480| 12 | 1 | 240 | 6 | 61.7 | 97.4 |
+|6  | 480| 8  | 1 | 480 | 4 | 61.6 | 97.3 |
+|4  | 480| 10 | 1 | 240 | 4 | 61.4 | 97.2 |
+|4  | 480| 12 | 1 | 480 | 8 | 61.3 | 97.2 |
 
 
 
