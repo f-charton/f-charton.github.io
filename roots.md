@@ -199,7 +199,13 @@ Note that the results in table 5 are for 58% accuracy, if we consider the best p
 |96|333|99.9|
 |128|399|119.7|
 
-### Model architecture: impact of dimension
+### Discussion and conclusions
+
+These results are of little interest for mathematicians, or people who actually need to compute the roots of polynomials. We already have efficient algorithms for this. 
+
+## Notes on model architecture
+
+### Impact of dimension
 
 Our default model has 512 dimensions, 4 layers and 8 attention heads. Table 6 presents max-err accuracy after 300-500 epochs, for different model sizes: 1 to 8 layers, 240 to 720 dimensions, and 6 to 16 heads (note: the transformer implementation I use demands that dimension is a multiple of the number of heads, I choose multiples of 240 for the dimensions so as to test 6, 8, 10, 12 and 16 heads).
 
@@ -268,7 +274,4 @@ Only transformers with a shared encoder and no shared decoder seem to learn. Wit
 |2  | 2| 12 | 2 |60.6 | 97.0 | 79.3 | 
 
 
-### Conclusions
-
-These results are of little interest for mathematicians, or people who actually need to compute the roots of polynomials. We already have efficient algorithms for this. 
 
