@@ -224,6 +224,8 @@ Apart for 1-layer models, which prove too shallow, model depth, dimension and nu
 
 In the [graph](https://arxiv.org/abs/2112.03588) and linear algebra paper, I have found that asymmetric models, with a deep encoder and shallow decoder, proved efficient. For matrix inversion, the hardest problem from linear algebra, the best models had 6 layers in the encoder layer, and only one in the decoder.
 
+Table 7 presents the performance of asymmetric architectures, with 4 to 6 layers and 480 or 720 dimensions in the encoder, and one layer and 240 or 480 dimensions in the decoder, after 400 to 500 epochs. There is a marginal improvement in accuracy compared to symmetric models. Note that the best decoders are very small: 1 layer, 240 dimensions, and 4 attention heads.
+
 **Table 7 - max-err and min-err accuracy for some asymmetric architectures**
 |Encoder layers |Encoder dimensions |Encoder heads |Decoder layers | Decoder dimensions |Decoder heads | max-err | min-err | 
 |---|---|---|---|---|---|---|---|
@@ -235,8 +237,6 @@ In the [graph](https://arxiv.org/abs/2112.03588) and linear algebra paper, I hav
 |6  | 480| 8  | 1 | 480 | 4 | 61.6 | 97.3 |
 |4  | 480| 10 | 1 | 240 | 4 | 61.4 | 97.2 |
 |4  | 480| 12 | 1 | 480 | 8 | 61.3 | 97.2 |
-
-
 
 ### Shared layers and universal transformers
 
