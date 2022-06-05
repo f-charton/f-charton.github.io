@@ -201,7 +201,9 @@ Note that the results in table 5 are for 58% accuracy, if we consider the best p
 
 ### Model architecture: impact of dimension
 
-Model size has little impact on performance. Apart from 1-layer transformers, which prove too shallow to achieve good performance, 2, 4, 6 and 8 layers models result in the same accuracy (in table 7, the larger models are a little lower, because they take longer to train). Embedding dimension and the number of attention heads also see to have little impact on accuracy. 
+Our default model has 512 dimensions, 4 layers and 8 attention heads. Table 6 presents max-err accuracy after 300-500 epochs, for different model sizes: 1 to 8 layers, 240 to 720 dimensions, and 6 to 16 heads (note: the transformer implementation I use demands that dimension is a multiple of the number of heads, I choose multiples of 240 for the dimensions so as to test 6, 8, 10, 12 and 16 heads).
+
+Apart for 1-layer models, which prove too shallow, model depth, dimension and number of heads seem to have very little impact on performance. Actually, the largest models seem to perform a little worse, but this is probably an effect of their slower training speed.
 
 **Table 6 - max-err accuracy as a function of model depth, dimension and attention heads** 
 |   | 1/1 | 2/2 | 4/4 | 6/6 | 8/8 |
@@ -220,7 +222,8 @@ Model size has little impact on performance. Apart from 1-layer transformers, wh
 
 ### Asymmetric architectures
 
-Asymmetric models, with a deep encoder and shallow decoder, have proven their worth for linear algebra. 
+In the [graph](https://arxiv.org/abs/2112.03588) and linear algebra paper, I have found that asymmetric models, with a deep encoder and shallow decoder, proved efficient. For matrix inversion, the hardest problem from linear algebra, the best models had 6 layers in the encoder layer, and only one in the decoder.
+
 
 |   | 240 dimensions | | | 480 dimensions | | |
 |---|---|---|---|---|---|---|
