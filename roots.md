@@ -93,7 +93,7 @@ A prediction is considered correct if it can be decoded into a sequence of $n$ r
 I also introduce three alternative measures. With the **minimal relative error (min-err)** metrics, a prediction is correct if the relative prediction error is below the 5% tolerance level for at least one root. Whereas max-err uses the maximum of relative prediction errors and min-err their minimum, **average relative error (avg-err)** measures the proportion of the $n$ roots predicted within tolerance: min-err therefore corresponds to avg-err=$\frac{1}{n}$ and max_err to avg-err=1. Finally, the **number of roots predicted (n-roots)** is the product of the average error by the degree, this allows for comparison between polynomials of different degrees.
 
 ### Main results
-For the main experiments, transformers are trained on a set of polynomials of degrees 3 to 6 (with an equal proportion of each degree). After 400 epochs (120 million examples), the best model achieve a max-err accuracy of 61.3%: all roots are predicted within 5% relative error in more than 61% of the (random) test cases. At 2, 1 and 0.5%, the model achieves 41.4, 27.2 and 14.0% accuracy. The learning curves for strict tolerance are not saturated after 400 epochs, so more training would improve these results. Since these approximate solutions can be refined using efficient numerical techniques, I do not think such additional training is needed.
+For the main experiments, transformers are trained on a set of polynomials of degrees 3 to 6 (with an equal proportion of each degree). After 400 epochs (120 million examples), the best model achieve a max-err accuracy of 61.3%: all roots are predicted within 5% relative error in more than 61% of the (random) test cases. At 2, 1 and 0.5%, the model achieves 41.4, 27.2 and 14.0% accuracy. The learning curves for strict tolerance are not saturated after 400 epochs, so more training would improve these results. Since these approximate solutions can be refined using efficient numerical techniques, I do not think such additional training is warranted.
 
 Min-err accuracy is 97.2%: the model almost always recovers at least one root. Finally, avg-err accuracy is 79.9%: on the whole test set, 4 roots out of 5 are correctly predicted.
 
@@ -126,9 +126,9 @@ This observation remains valid for larger degrees (table 1b). Predicting all roo
 
 ### Different training sets
 
-In my [paper on linear algebra](https://arxiv.org/abs/2112.01898), I observed that training models on sets mixing problems of different sizes could improve accuracy. A model trained on 10x10 matrices only could not learn their eigenvalues, but a model trained on a mixture of 5x5 to 15x15 matrices would learn eigenvalues for all dimensions (with high accuracy).
+When studying [transformers in linear algebra](https://arxiv.org/abs/2112.01898), I observed that mixing problems of different sizes in the training set could improve accuracy. Specifically, models trained on 10x10 matrices only never seemed to learn to predict eigenvalues. But models trained on a mixtures of 5x5 to 15x15 matrices would learn to predict eigenvalues for all dimensions.
 
-In this second series of experiments, I compare models trained on sets of polynomials of same degree (six datasets with degree 3, 4, 5, 6, 7 and 8), and mixtures of polynomials of different degrees (3-4, 3-6, 3-8, 5-6 5-8, all uniformly sampled with respect to the degree). All modesl are trained for about 400 epochs. Table 2 summarize the max-err accuracy (proportion of polynomials with all roots predicted correctly), for all degrees in the test set. For each degree (line in Table 2) accuracies are constant, and independent of the training set, e.g. all degree 3 polynomials are predicted with 85% accuracy.
+These observations do not seem to transfer to polynomial root finding. Table 2 and 3 compare models trained on different datasets: polynomials of same degree (six datasets with degree 3, 4, 5, 6, 7 and 8), and (uniform) mixtures of different degrees (3-4, 3-6, 3-8, 5-6 5-8). All models were trained for about 400 epochs. In both tables, for a given degree in the test polynomial (i.e. line in the table), accuracy are constant over all training sets:  ee.g. all degree 3 polynomials are predicted with 85% max_err accuracy, no matter they were trained on degree 3 polynomials only, or on a mixture of degree 3 to 8.
  
 **Table 2 - max-err accuracy per degree, for different datasets** 
 |Degree | 3 | 4 | 5 | 6 | 7 | 8 | 3-4 | 3-6 | 3-8 | 5-6 | 5-8 |
@@ -140,9 +140,7 @@ In this second series of experiments, I compare models trained on sets of polyno
 | 7 | - | - | - | - | 18.8  | - | -   | -   | 17.4| -   | 18.8|
 | 8 | - | - | - | - | - | 10.1  | -   | -   |  9.6| -   | 9.0 |
 
-The same observation holds for the number of roots predicted. As degree increases, the number of roots seem to saturate around 4.
-
-**Table 3 -  Number of roots predicted for different datasets**
+**Table 3 -  Number of roots predicted for different datasets (n-roots)**
 |Degree | 3 | 4 | 5 | 6 | 7 | 8 | 3-4 | 3-6 | 3-8 | 5-6 | 5-8 |
 |-------|---|---|---|---|---|---|-----|-----|-----|-----|-----|
 | 3 | 2.7   | - | - | - | - | - | 2.7 | 2.7 | 2.7 | -   | -   | 
@@ -152,20 +150,23 @@ The same observation holds for the number of roots predicted. As degree increase
 | 7 | - | - | - | - | 4.2   | - | -   | -   | 4.1 | -   | 4.2 |
 | 8 | - | - | - | - | - | 4.1   | -   | -   | 4.0 | -   | 4.1 |
 
-All the results in tables 2 and 3 were obtained after training on the same number of examples (about 120 million). This means that a model trained on polynomials of degree 3 to 8 saw about 20 million examples of each degrees, yet achieve similar results to models trained on polynomials of one degree, with 120 million examples. This clearly demonstrates the benefit of mixing degrees in the datasets.
-
-
+This makes a strong case for mixing degrees in the training sets. 
+All the results in tables 2 and 3 were obtained from datasets of similar size (about 120 million examples), but mixture sets present the model with **much less** examples of each degree. For instance, a polynomial of degree 6 is predicted with 36% max-err accuracy after being presented with 120 million degree 6 polynomials (in the 6-only training set), and 36.9% after seeing only 20 million degree 6 polynomials in the 3-8 training set. This strongly suggests that the models learns from polynomials of different degrees, i.e. that training on degrees 3 to 6 does not amount to learning 4 different problems.
 
 ### Sorted and unsorted roots
 
-In my basic train sets, the root of the poynomial are sorted in decreasing order. Table 5 compares their accuracy with models trained on datasets where the roots are left in random order. For small degrees (3 and 4), root order has no impact on accuracy. For larger degrees, sorting the roots brings a small gain in accuracy. This result is slighty counter-intuitive: when training on unsorted roots, the model sees one out of $n$ possible permutations of the $n$ roots. This results in a higher cross-entropy loss, and should make the training much harder.
+In the basic train sets, the root in the output are sorted in decreasing order. To each input polynomial corresponds a unique output, that is presented at training. What if the roots were not sorted? Then, for a degree $n$ polynomial, there would be $n!$ possible sequences of roots, and the model would be trained on one (selected randomly). Intuitively, I would have thought that sorting the roots helped the model, and that the unsorted task would be much harder.
+
+Table 4 compares max-err accuracy (our "hardest" metric) for different degrees, on three different datasets, for models trained from sorted and unsorted roots. The evaluation procedure does not change: predicted roots are sorted before relative errors are computed. For small degrees (3 and 4), root order has no impact on accuracy. For larger degrees, sorting the roots brings a small gain in accuracy. 
+
+This result is slighty counter-intuitive: when training on unsorted roots, the model sees one out of $n$ possible permutations of the $n$ roots. This results in a higher cross-entropy loss, and should make the training much harder.
 
 This confirms an observation from [our paper on recurrences](https://arxiv.org/abs/2201.04600): training the model on simplified expressions (i.e. $2x+1$ vs $x+2+x-1$) made no difference in accuracy. 
 
 The discussion on the importance of simplification has been ongoing since my first paper ([on integration](https://arxiv.org/abs/1912.01412)). In a review, [Ernest Davis commented](https://arxiv.org/abs/1912.05752) that working from simplified functions made the problem easier ("No integration without simplification!"), and I considered that a fair point. The results from the paper on recurrences, which suggested that simplification was orthogonal to the problem we were solving (and therefore had no bearing on it), came as a surprise. This result on sorting roots seems to confirm it (or, at least, go in the same direction).
 
 
-**Table 5 - Sorted and unsorted roots, max-err accuracy** 
+**Table 4 - Sorted and unsorted roots, max-err accuracy** 
 |Degree | 3-6 sorted | 3-6 unsorted | 3-8 sorted | 3-8 unsorted | 5-8 sorted | 5-8 unsorted |
 |---|---|---|---|---|---|---|
 |3 | 86.1| 87.2 | 85.4 | 85.5 | -    | - | 
