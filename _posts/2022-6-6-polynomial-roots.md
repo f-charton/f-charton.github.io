@@ -6,10 +6,10 @@ TLDR: Transformers can be trained to predict the roots of polynomials from their
 
 Many researchers have observed that neural networks struggle with basic arithmetic. For instance, transformers perform poorly on a task like the multiplication of two large numbers (represented as sequences of digits in some number base). This has long been considered a "hard" limitation of language models and, for some authors, a proof that hybrid systems, mixing rule-based and gradient-based techniques, are needed.
 
-In a [paper published last year](https://arxiv.org/abs/2112.01898), I showed that transformers can learn to perform approximate computations from examples only. They can predict the solutions of various problems of linear algebra, from basic (arithmetic) operations on matrices to advanced (non linear) computations, like eigen decomposition and inversion. 
+In a [paper published last year](https://arxiv.org/abs/2112.01898), I showed that transformers can learn to perform approximate computations from examples only, for various problems of linear algebra, from basic (arithmetic) operations on matrices to advanced (non linear) computations, like eigen decomposition and inversion. 
 
-This post features additional results, involving a slightly more advanced numerical problem: finding the roots of polynomials. 
-I am using the same architectures and encoding as in my paper on linear algebra. A summary of results, and discussion, can be found [at the end of this post](#discussion-and-conclusions).
+This post features additional results, involving another numerical problem: finding the roots of polynomials. 
+I am using the same architectures and encoding as in my paper on linear algebra. A summary of results, and discussion, can be found [at the end of this post](#summary-of-results-and-discussion).
 
 ### The maths
 A **polynomial** of degree $n$ with real coefficients is a function of the form : $P(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0$, with all $a_i$ in $\mathbb{R}$. A degree $n$ polynomial $P$ has $n$ **roots** : values $x_i$ such that $P(x_i) = 0$, that allow to  **factorize** $P$ as $P(x) = a_n (x-x_1)(x-x_2)\dots(x-x_n)$. The roots can be multiple, i.e. we can have $x_i=x_j$ for different values of $i$ and $j$. When all the coefficients $a_i$ are real, the roots are either real numbers, or pairs of conjugate complex numbers, ($a+ib$, $a-ib$), with $a$, $b$ $\in$ $\mathbb R$. 
