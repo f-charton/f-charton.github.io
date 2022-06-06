@@ -283,6 +283,13 @@ Of course, we already have libraries that can compute the roots of polynomials, 
 
 This is, in fact, the main motivation of this research. Many problems in science do not come up already formalized, as math problems that need to be solved (invert this matrix, solve that polynomial).  Most of the time, we are given a black box, which only provides us with its input and output. Transformers can learn to the relation between input and output from data only, a much more difficult, and general, task than solving a known (and formalized) problem.
 
+Several experiments have not been run (and might be included in a future update, or follow-up post). 
+* I have not tested the model robustness to noise: add noise to the coefficients, see if the roots are still found. This was proven to work in linear algebra, and our paper on symbolic regression for recurrent sequences. If the same results hold, models will be robus so long the noise is smaller than the tolerance we put on accuracy.
+* Polynomials with complex coefficients are an obvious extension of this work. Input sequences would be longer, but I see no reason why the problem would become harder. Polynomials over finite fields are a completely different branch (and a much harder problem).
+* I have not experimented with out-of-domain generalization. It seems obvious than a polynomial trained on degrees 3 to 6 would not learn to predict the roots of a polynomial of degree 8 : the transformer will **never** have seen this input length before, and so there is no chance that the attention mechanism can figure longer interactions than those seen at training. Few-shot learning of new degrees might work, and would be worth testing.
+* Generalization to longer sequences is beginning to be understood: the positional embedding is the main suspect, and alternatives have been proposed. Poylnomials might provide a good testbed.
+
+
 
 
 
