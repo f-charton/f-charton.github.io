@@ -117,12 +117,12 @@ This observation remains valid for larger degrees (table 1b). Predicting all roo
 |---|---|---|---|---|
 |5 | 49.1| 97.5 | 75.4 | 3.8 | 
 |8 | 10.1| 95.3 | 51.1 |  4.1 | 
-|10 | 0.6| 93.1 | 34.9 |  3.5 | 
+|10 | 0.7| 93.4 | 36.5 |  3.6 | 
 |15 | 0| 92.8 | 22.6 |  3.4 | 
-|20 | 0| 92.7 | 15.9 |  3.2 | 
-|25 | 0| 95.5 | 15.6 |  3.9 | 
+|20 | 0| 92.8 | 16.2 |  3.2 | 
+|25 | 0| 95.6 | 15.6 |  3.9 | 
 
-(note: 400 epochs for degree 5 and 8, 200 for 10, 120 for 15 and 60 for 20 and 25)
+(note: 400 epochs for degree 5 and 8, 250 for 10, 120 for 15 and 60 for 20 and 25)
 
 
 ### Different training sets
@@ -287,7 +287,7 @@ Several experiments have not been run (and might be included in a future update,
 * I have not tested the model robustness to noise: add noise to the coefficients, see if the roots are still found. This was proven to work in linear algebra, and our paper on symbolic regression for recurrent sequences. If the same results hold, models will be robus so long the noise is smaller than the tolerance we put on accuracy.
 * Polynomials with complex coefficients are an obvious extension of this work. Input sequences would be longer, but I see no reason why the problem would become harder. Polynomials over finite fields are a completely different branch (and a much harder problem).
 * I have not experimented with out-of-domain generalization. It seems obvious than a polynomial trained on degrees 3 to 6 would not learn to predict the roots of a polynomial of degree 8 : the transformer will **never** have seen this input length before, and so there is no chance that the attention mechanism can figure longer interactions than those seen at training. Few-shot learning of new degrees might work, and would be worth testing.
-* Generalization to longer sequences is beginning to be understood: the positional embedding is the main suspect, and alternatives have been proposed. Poylnomials might provide a good testbed.
+* Generalization to longer sequences is beginning to be understood: the positional embedding is the main suspect, and alternatives have been proposed. Polynomials might provide a good testbed for that kind of experiment.
 
 
 
