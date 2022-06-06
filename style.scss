@@ -254,11 +254,14 @@ nav {
 .post {
   blockquote {
     margin: 1.8em .8em;
-    border-left: 2px solid $gray;
+    border-left: 0px solid $gray;
     padding: 0.1em 1em;
     color: $gray;
     font-size: 22px;
     font-style: italic;
+  }
+  .tablelines table, .tablelines td, .tablelines th {
+    border: 1px solid black;
   }
 
   .comments {
