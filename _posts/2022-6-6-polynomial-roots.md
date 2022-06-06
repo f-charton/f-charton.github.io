@@ -4,11 +4,11 @@ title: Computing the roots of polynomials
 ---
 TLDR: Transformers can be trained to predict the roots of polynomials from their coefficients: 
 
-Many researchers have observed that neural networks struggle with basic arithmetic. For instance, transformers perform poorly on a task like the multiplication of two large numbers (represented as sequences of digits in some number base). This has long been considered a "hard" limitation of language models and, for some authors, a proof that hybrid systems, mixing rule-based and gradient-based techniques, are needed.
+It has been observed that neural networks struggle with basic arithmetic. For instance, transformers perform poorly when trying to multiply two large numbers (represented as sequences of digits in some number base). This has long been considered a "hard" limitation of language models and, for some authors, a proof that hybrid systems, mixing rule-based and gradient-based techniques, are needed.
 
-In a [paper published last year](https://arxiv.org/abs/2112.01898), I showed that transformers can learn to perform approximate computations from examples only, for various problems of linear algebra, from basic (arithmetic) operations on matrices to advanced (non linear) computations, like eigen decomposition and inversion. 
+In a [paper published last year](https://arxiv.org/abs/2112.01898), I showed that transformers can learn to perform approximate computations from examples only. They can learn various problems of linear algebra, from basic (arithmetic) operations on matrices to advanced (non linear) computations, like eigen decomposition and inversion. 
 
-This post features additional results, involving another numerical problem: finding the roots of polynomials. 
+This post features another numerical problem: finding the roots of polynomials. 
 I am using the same architectures and encoding as in my paper on linear algebra. A summary of results, and discussion, can be found [at the end of this post](#summary-of-results-and-discussion).
 
 ### The maths
