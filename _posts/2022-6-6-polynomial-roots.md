@@ -135,6 +135,7 @@ When studying [transformers in linear algebra](https://arxiv.org/abs/2112.01898)
 These observations do not seem to transfer to polynomial root finding. Table 2 and 3 compare models trained on different datasets: polynomials of same degree (six datasets with degree 3, 4, 5, 6, 7 and 8), and (uniform) mixtures of different degrees (3-4, 3-6, 3-8, 5-6 5-8). All models were trained for about 400 epochs. In both tables, for a given degree in the test polynomial (i.e. line in the table), accuracy are constant over all training sets:  ee.g. all degree 3 polynomials are predicted with 85% max_err accuracy, no matter they were trained on degree 3 polynomials only, or on a mixture of degree 3 to 8.
  
 **Table 2 - max-err accuracy per degree, for different datasets** 
+
 |Degree | 3 | 4 | 5 | 6 | 7 | 8 | 3-4 | 3-6 | 3-8 | 5-6 | 5-8 |
 |-------|---|---|---|---|---|---|-----|-----|-----|-----|-----|
 | 3 | 84.1  | - | - | - | - | - | 84.5| 86.1| 85.4| -   | -   | 
@@ -145,6 +146,7 @@ These observations do not seem to transfer to polynomial root finding. Table 2 a
 | 8 | - | - | - | - | - | 10.1  | -   | -   |  9.6| -   | 9.0 |
 
 **Table 3 -  Number of roots predicted for different datasets (n-roots)**
+
 |Degree | 3 | 4 | 5 | 6 | 7 | 8 | 3-4 | 3-6 | 3-8 | 5-6 | 5-8 |
 |-------|---|---|---|---|---|---|-----|-----|-----|-----|-----|
 | 3 | 2.7   | - | - | - | - | - | 2.7 | 2.7 | 2.7 | -   | -   | 
@@ -169,6 +171,7 @@ The debate on the importance of simplification has been ongoing since my first p
 
 
 **Table 4 - Sorted and unsorted roots, max-err accuracy** 
+
 |Degree | 3-6 sorted | 3-6 unsorted | 3-8 sorted | 3-8 unsorted | 5-8 sorted | 5-8 unsorted |
 |---|---|---|---|---|---|---|
 |3 | 86.1| 87.2 | 85.4 | 85.5 | -    | - | 
@@ -189,6 +192,7 @@ When training data is generated, data efficiency is not an issue, but these resu
 Note that the results in table 5 are for 58% accuracy, if we consider the best possible accuracy, batch size of 32 and 64 seem optimal. 
 
 **Table 5 - batch size, number or epochs, and millions of examples, to reach 58% accuracy**
+
 |Batch size|Epochs|Millions of examples|
 |---|---|---|
 |4|42|12.6|
@@ -209,6 +213,7 @@ Our default model has 512 dimensions, 4 layers and 8 attention heads. Table 6 pr
 Apart for 1-layer models, which prove too shallow, model depth, dimension and number of heads seem to have very little impact on performance. Actually, the largest models seem to perform a little worse, but this is probably an effect of their slower training speed.
 
 **Table 6 - max-err accuracy as a function of model depth, dimension and attention heads** 
+
 |   | 1/1 | 2/2 | 4/4 | 6/6 | 8/8 |
 |---|---|---|---|---|---|
 |240 dimensions 8 heads  | 48.4 | 58.4 | 60.6 | 60.1 | 59.0 | 
@@ -230,6 +235,7 @@ In the [graph](https://arxiv.org/abs/2112.03588) and linear algebra paper, I hav
 Table 7 presents the performance of asymmetric architectures, with 4 to 6 layers and 480 or 720 dimensions in the encoder, and one layer and 240 or 480 dimensions in the decoder, after 400 to 500 epochs. There is a marginal improvement in accuracy compared to symmetric models. Note that the best decoders are very small: 1 layer, 240 dimensions, and 4 attention heads.
 
 **Table 7 - max-err and min-err accuracy for some asymmetric architectures**
+
 |Encoder layers |Encoder dimensions |Encoder heads |Decoder layers | Decoder dimensions |Decoder heads | max-err | min-err | 
 |---|---|---|---|---|---|---|---|
 |6  | 720| 12 | 1 | 240 | 4 | 62.0 | 97.3 |
@@ -252,6 +258,7 @@ I experiment on polynomials of degrees 3 to 6, with transformers with 1 or 2 lay
 Only transformers with a shared encoder and no shared decoder seem to learn. With models with a shared decoder, the cross-entropy loss on predicted sequences is reduced at training, but max-err accuracy never reaches 1%, and min-err accuracy stays around 10%. All models with shared encoder achieve a max-err accuracy between 60.2 and 61.6% after 400 epochs, on par with the best symmetric models. Table 8 presents detailed results. Hyper parameters have little impact on performance.
 
 **Table 8 - Universal transformers (shared layer in encoder only)**
+
 |Encoder layers |Shared layer |Max loops | Decoder layers| max-err | min-err | avg-err | 
 |---|---|---|---|---|---|---|
 |1  | 1| 4 | 1| 60.8 | 97.2 | 79.7 | 
