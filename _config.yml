@@ -53,6 +53,8 @@ baseurl: ""
 # !! You don't need to change any of the configuration flags below !!
 #
 
+markdown: kramdown
+highlighter: rouge
 permalink: /:title/
 
 # The release of Jekyll Now that you're using
@@ -60,14 +62,14 @@ version: v3.8.5
 
 
 # Jekyll 3 now only supports Kramdown for Markdown
-kramdown:
+#kramdown:
   # Use GitHub flavored markdown, including triple backtick fenced code blocks
-  input: GFM
+  #input: GFM
   # Jekyll 3 and GitHub Pages now only support rouge for syntax highlighting
-  syntax_highlighter: rouge
-  syntax_highlighter_opts:
+  #syntax_highlighter: rouge
+  #syntax_highlighter_opts:
     # Use existing pygments syntax highlighting css
-    css_class: 'highlight'
+   # css_class: 'highlight'
 
 # Set the Sass partials directory, as we're using @imports
 sass:
