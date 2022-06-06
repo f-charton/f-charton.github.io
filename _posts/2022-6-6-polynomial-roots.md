@@ -4,7 +4,7 @@ title: Computing the roots of polynomials
 ---
 TLDR: Transformers can be trained to predict the roots of polynomials from their coefficients: 
 
-It has been observed by many authors that neural networks struggle with basic arithmetic. For instance, transformers perform poorly on a task like the multiplication of two large numbers (represented as sequences of digits in some number base). This has long been considered a "hard" limitation of language models (and, for some authors, a proof that hybrid systems, mixing rule-based and gradient-based techniques, were needed.
+Many researchers have observed that neural networks struggle with basic arithmetic. For instance, transformers perform poorly on a task like the multiplication of two large numbers (represented as sequences of digits in some number base). This has long been considered a "hard" limitation of language models (and, for some authors, a proof that hybrid systems, mixing rule-based and gradient-based techniques, were needed.
 
 In a [paper published last year](https://arxiv.org/abs/2112.01898), I showed that transformers can learn to perform approximate computations from examples only. They can predict the solutions of various problems of linear algebra, from basic (arithmetic) operations on matrices to advanced (non linear) computations, like eigen decomposition and inversion. 
 
