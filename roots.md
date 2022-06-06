@@ -9,7 +9,7 @@ It has been observed by many authors that neural networks struggle with basic ar
 In a [paper published last year](https://arxiv.org/abs/2112.01898), I showed that transformers can learn to perform approximate computations from examples only. They can predict the solutions of various problems of linear algebra, from basic (arithmetic) operations on matrices to advanced (non linear) computations, like eigen decomposition and inversion. 
 
 This post features additional results, involving a slightly more advanced numerical problem: finding the roots of polynomials. 
-I am using the same architectures and encoding as in my paper on linear algebra. The main results can be found [at the end of this post](#discussion-and-conclusions).
+I am using the same architectures and encoding as in my paper on linear algebra. A summary of results, and discussion, can be found [at the end of this post](#discussion-and-conclusions).
 
 ### The maths
 A **polynomial** of degree $n$ with real coefficients is a function of the form : $P(x) = a_n x^n + a_{n-1} x^{n-1} + \dots + a_1 x + a_0$, with all $a_i$ in $\mathbb{R}$). A degree $n$ polynomial $P$ has $n$ **roots** : values $x_i$ such that $P(x_i) = 0$, that allow to  **factorize** $P$ as $P(x) = a_n (x-x_1)(x-x_2)\dots(x-x_n)$. The roots can be multiple, i.e. we can have $x_i=x_j$ for different values of $i$ and $j$. When all the coefficients $a_i$ are real, the roots are either real numbers, or pairs of conjugate complex numbers, ($a+ib$, $a-ib$), with $a$, $b$ $\in$ $\mathbb R$. 
@@ -268,14 +268,22 @@ Only transformers with a shared encoder and no shared decoder seem to learn. Wit
 |2  | 2| 12 | 2 |60.6 | 97.0 | 79.3 | 
 
 
-### Discussion and conclusions
+### Summary of results and discussion
 
-Transformers can be trained, from examples only, to find the roots of polynomials. Whereas finding approximation to all roots at once becomes difficult as the degree increase, trained models can find at least one root in more than 95% of the cases, and usually find 3 or 4 at once. 
-After linear algebra, this is a second example of an advanced nonlinear computation that can be learned by a transformer.
+Here are the main takeaways:
+* Transformers can be trained, from examples only, to find the roots of polynomials. When trained over sets of polynomial of degree 3 to 6, they predict all the roots with less than 5% relative error in 61% of the test cases. They predict at least one root in more than 97% of test cases, and on average they predict 80% of the roots in the test set. 
+* As the degree of the poynomial increases, finding all roots (within tolerance) becomes very difficult, and accuracy drops to zero for degree 10. But the number of roots recovered on average remains constant (between 3 and 4), this holds until degree 25 at least. 
+* Training on samples with many different degrees is just as efficient than training on samples of polynomials of just one degree. Reducing batch size also allows to train from smaller datasets (but it makes the learning slower).
+* Predicting sorted or unsorted roots makes no difference, as in previous papers, it seems that "simplification" is orthogonal to our problem.
+* Transformer size has little impact on performance, 2 layers, and 512 dimensions work just as well as 8 and 768. Model size can be reduced by using asymmetric architecture: large encoder and shallow decoder. Universal transformers, with a shared layer in the encoder (and a shallow non-shared decoder) achieve state-of-the-art performance. 
 
-As with linear algebra, I am not advocating replacing existing algorithms by transformer-based techniques. 
+After linear algebra, this is a second example of an advanced nonlinear computation that can be learned by a transformer. This is an interesting result, because it goes against the received wisdom that neural networks, and especially transformers, cannot compute, and therefore must be supplemented by rule-based algorithms every time some mathematical or symbolic operation is to be performed. 
 
-: when the problem to be solved is already known (I am given a polynomial and asked to find its roots), nothing beats "packed routines". 
+Of course, we already have libraries that can compute the roots of polynomials, and I am not advocating replacing them with transformer-based models. If you have a polynomial and need to find its roots, you should use the packed routines of your favorite library. There is no point training a transformer to do it. But if you have a black-box system that only provides you with input and output, and you are not told what problem the black box is solving, then training a transformer to emulate it might be an option. 
+
+This is the main motivation of this research. Most problems in science do not come up already formalized, as questions like "invert this matrix", or "find the roots of that polynomials", but as black box systems providing one with numerical input and output. And it seems that transformers can learn to "emulate" those black box, using examples only. This is a much harder, and general, problem than just finding the roots.
+
+
 
 
 
