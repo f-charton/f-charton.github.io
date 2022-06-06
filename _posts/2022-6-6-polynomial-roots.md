@@ -109,6 +109,7 @@ In other words, while  **all** roots becomes more difficult as the degree (and t
 |5 | 49.1| 97.5 | 75.4 | 3.8 | 
 |6 | 36.5| 96.4 | 68.4 |  4.1 | 
 |Average | 61.3 | 97.2 | 79.9 | - | 
+{: .tablelines}
 
 This observation remains valid for larger degrees (table 1b). Predicting all roots becomes impossible for degrees higher than 10, and max-err accuracy drops to zero. But all models can predict one root in 93% of the test cases, and on average, 3 to 4 roots are correctly predicted for all degrees.
 
@@ -121,6 +122,7 @@ This observation remains valid for larger degrees (table 1b). Predicting all roo
 |15 | 0| 92.8 | 22.6 |  3.4 | 
 |20 | 0| 92.8 | 16.2 |  3.2 | 
 |25 | 0| 95.6 | 15.6 |  3.9 | 
+{: .tablelines}
 
 (note: 400 epochs for degree 5 and 8, 250 for 10, 120 for 15 and 60 for 20 and 25)
 
