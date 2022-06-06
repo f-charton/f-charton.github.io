@@ -102,6 +102,7 @@ As the degree of the polynomial increas, max-err accuracy drops, from 86.1% for 
 In other words, while  **all** roots becomes more difficult as the degree (and the number of roots to be predicted) increases, the model capability to predict **at least one** root (and in fact three to four), keeps constant as degree grows. 
 
 **Table 1 - Accuracy as a function of degree (roots of polynomials of degree 3-6)** 
+
 |Degree | All roots (max-err) | One root (min-err) | % of roots (avg-err) | # roots predicted |
 |---|---|---|---|---|
 |3 | 86.1 | 97.6 | 91.2 | 2.7 | 
@@ -114,6 +115,7 @@ In other words, while  **all** roots becomes more difficult as the degree (and t
 This observation remains valid for larger degrees (table 1b). Predicting all roots becomes impossible for degrees higher than 10, and max-err accuracy drops to zero. But all models can predict one root in 93% of the test cases, and on average, 3 to 4 roots are correctly predicted for all degrees.
 
 **Table 1b - Larger degrees** 
+
 |Degree | All roots (max-err) | One root (min-err) | % of roots (avg-err) | # roots predicted  (n-roots)|
 |---|---|---|---|---|
 |5 | 49.1| 97.5 | 75.4 | 3.8 | 
