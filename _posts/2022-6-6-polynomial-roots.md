@@ -120,12 +120,12 @@ This observation remains valid for larger degrees (table 1b). Predicting all roo
 |---|---|---|---|---|
 |5 | 49.1| 97.5 | 75.4 | 3.8 | 
 |8 | 10.1| 95.3 | 51.1 |  4.1 | 
-|10 | 1.4| 95.0 | 39.3 |  3.9 | 
-|15 | 0| 94.6 | 25.8 |  3.9 | 
-|20 | 0| 94.7 | 19.0 |  3.8 | 
-|25 | 0| 97.0 | 17.0 |  4.3 | 
+|10 | 1.5| 95.2 | 39.4 |  3.9 | 
+|15 | 0| 95.2 | 26.4 |  4.0 | 
+|20 | 0| 94.8 | 19.4 |  3.9 | 
+|25 | 0| 97.1 | 17.3 |  4.3 | 
 
-(note: 400 epochs for degree 5, 8 and 10, 250 for 15 and 20, and 150 for 25)
+(note: 400 epochs for degree 5 and 8, 600 for 10, 300 for 15 and 20, and 250 for 25)
 
 
 ### Different training sets
