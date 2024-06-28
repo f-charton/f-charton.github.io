@@ -6,8 +6,6 @@ permalink: /about/
 
 I am a research engineer at FAIR, Meta, researching the use of language models in mathematics and theoretical physics. I graduated (a long time ago) from Ecole Polytechnique and ENSAE, where I majored in statistics. After a career in media, advertising, and software development, I had the good fortune of landing a short term contract as a visiting entrepreneur in Meta (best job title ever!), and publishing a [paper](https://arxiv.org/abs/1912.01412), with Guillaume Lample, demonstrating that transformers can be trained to perform symbolic integration, with the same accuracy as computer algebras. Then, one thing led to another, and I became, at the fresh age of 55, a full-time research scientist, working on AI4Science. My recent scientific news can usually be found on [my twitter account](https://twitter.com/f_charton). I can be contacted at [fcharton@gmail.com](mailto:fcharton@gmail.com)
 
-## Vita
-
 ### Publications
 My full list of publications, and their citations can be found on [Google scholar](https://scholar.google.com/citations?hl=fr&user=1tMnd-4AAAAJ&view_op=list_works). Thanks to Kristin Lauter and Julia Kempe, I have an Erdos number of 3.
 
@@ -32,6 +30,10 @@ My full list of publications, and their citations can be found on [Google schola
 * [SALSA VERDE: a machine learning attack on Learning With Errors with sparse small secrets (2023)](https://arxiv.org/abs/2306.11641), with Cathy Li, Emily Wenger, Zeyuan Allen-Zhu, and Kristin Lauter
 
 ### Workshops I co-organized
+
+* [Mathematics and Machine Learning program](https://cmsa.fas.harvard.edu/event/mml2024/), Harvard CMSA (Autumn 2024), with Michael Douglas (Harvard), Michael Freedman (Harvard), Geordie Williamson (Sydney Mathematicam Research Institute), Fabian Ruehle (Northwestern)
+* [Maths for and by large language models](https://www.youtube.com/playlist?list=PLx5f8IelFRgHrJ9W6_fbfO3ahDrXMEIWn), IHES, May 2024, with Michael Douglas (Harvard) and Yiannis Vlassopoulos (IHES)
+
 
 ### Invited talks
 
