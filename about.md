@@ -1,10 +1,10 @@
 ---
 layout: page
-title: About
+title: Hi
 permalink: /about/
 ---
 
-I am a research engineer at FAIR, Meta, researching the use of language models in mathematics and theoretical physics. I graduated (a long time ago) from Ecole Polytechnique and ENSAE, where I majored in statistics. After a career in media, advertising, and software development, I had the good fortune of landing a short term contract as a visiting entrepreneur in Meta (best job title ever!), and publishing a [paper], with Guillaume Lample(https://arxiv.org/abs/1912.01412), demonstrating that transformers can be trained to perform symbolic integration, with the same accuracy as computer algebras. Then, one thing led to another, and I became, at the fresh age of 55, a full-time research scientist, working on AI4Science. My recent scientific news can usually be found on [my twitter account](https://twitter.com/f_charton). I can be contacted at [fcharton@gmail.com](mailto:fcharton@gmail.com)
+I am a research engineer at FAIR, Meta, researching the use of language models in mathematics and theoretical physics. I graduated (a long time ago) from Ecole Polytechnique and ENSAE, where I majored in statistics. After a career in media, advertising, and software development, I had the good fortune of landing a short term contract as a visiting entrepreneur in Meta (best job title ever!), and publishing a [paper](https://arxiv.org/abs/1912.01412), with Guillaume Lample, demonstrating that transformers can be trained to perform symbolic integration, with the same accuracy as computer algebras. Then, one thing led to another, and I became, at the fresh age of 55, a full-time research scientist, working on AI4Science. My recent scientific news can usually be found on [my twitter account](https://twitter.com/f_charton). I can be contacted at [fcharton@gmail.com](mailto:fcharton@gmail.com)
 
 ### Publications on AI for Science
 
