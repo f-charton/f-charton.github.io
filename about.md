@@ -1,10 +1,14 @@
 ---
 layout: page
-title: Hi
+title: short bio
 permalink: /about/
 ---
 
-I am a research engineer at FAIR, Meta, researching the use of language models in mathematics and theoretical physics. I graduated (a long time ago) from Ecole Polytechnique and ENSAE, where I majored in statistics. After a career in media, advertising, and software development, I had the good fortune of landing a short term contract as a visiting entrepreneur in Meta (best job title ever!), and publishing a [paper](https://arxiv.org/abs/1912.01412), with Guillaume Lample, demonstrating that transformers can be trained to perform symbolic integration, with the same accuracy as computer algebras. Then, one thing led to another, and I became, at the fresh age of 55, a full-time research scientist, working on AI4Science. My recent scientific news can usually be found on [my twitter account](https://twitter.com/f_charton). I can be contacted at [fcharton@gmail.com](mailto:fcharton@gmail.com)
+I am a Research Engineer at FAIR, Meta, researching the use of language models in mathematics and theoretical physics. I am also affiliated with Ecole des Ponts / CERMICS. I graduated from Ecole Polytechnique in 1987 and ENSAE (Ecole Nationale de la Statistique et de l'Administration Economique) in 1990, majoring in statistics. After a career in media, advertising and software development ([my LinkedIn profile](https://www.linkedin.com/in/fran%C3%A7ois-charton-214187120/), I joined Meta as a Research Engineer, working on AI for mathematics and theoretical physics ([Google Scholar](https://scholar.google.com/citations?hl=fr&user=1tMnd-4AAAAJ&pagesize=80&view_op=list_works)). 
+
+I can be reached at [fcharton@gmail.com](mailto:fcharton@gmail.com). My recent scientific news can usually be found on [my twitter account](https://twitter.com/f_charton).
+
+
 
 ### Publications
 My full list of publications, and their citations can be found on [Google scholar](https://scholar.google.com/citations?hl=fr&user=1tMnd-4AAAAJ&view_op=list_works). Thanks to Kristin Lauter and Julia Kempe, I have an Erdos number of 3.
