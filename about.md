@@ -52,7 +52,7 @@ Full list on [Google scholar](https://scholar.google.com/citations?hl=fr&user=1t
 * October 2024, Aspen meeting on foundation models, Transformers meet Lyapunov
 * October 2024, Geneva Institute for Theoretical Sciences, Transformers meet Lyapunov.
 * September 2024, AIFI, MIT, Transformers meet Lyapunov.
-* September 2024, Center for Mathematical Science and Applications, Harvard, Transformers meet Lyapunov.
+* September 2024, Center for Mathematical Science and Applications, Harvard, Transformers meet Lyapunov ()[video](https://www.youtube.com/watch?v=5uq6B8qkUQ0&list=PL0NRmB0fnLJRuFisNS0BmJyTiQsBYroVB&index=60).
 * June 2024	Niels Bohr Institute, Copenhagen, Language models for amplitude bootstrap.
 * June 2024	Institute for Advanced Study, Princeton, Amplitudes 2024, Language models for amplitude bootstrap.
 * May 2024,	Institut des Hautes Etudes Scientifiques, Math for and by LLM seminar, AI from generated data.
