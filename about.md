@@ -14,14 +14,14 @@ I can be reached at [fcharton@gmail.com](mailto:fcharton@gmail.com). My recent s
 Full list on [Google scholar](https://scholar.google.com/citations?hl=fr&user=1tMnd-4AAAAJ&view_op=list_works). 
 
 #### AI for Maths
-* [Global Lyapunov functions: a long-standing open problem in mathematics, with symbolic transformers](https://openreview.net/pdf?id=kOMrm4ZJ3m), with Alberto Alfarano and Amaury Hayat, NeurIPS 2024
-* [PatternBoost: Constructions in mathematics with a little help from AI](https://arxiv.org/abs/2411.00566), with Adam Wagner, Jordan Ellenberg and Geordie Williamson, generative models for combinatorics, 2024
-* [Linear algebra with transformers (2021)](https://arxiv.org/abs/2112.01898), solo paper, transformers can learn linear algebra, matrix operations, eigen decomposition, TMLR 2022
+* [Global Lyapunov functions: a long-standing open problem in mathematics, with symbolic transformers](https://openreview.net/pdf?id=kOMrm4ZJ3m), with Alberto Alfarano and Amaury Hayat, NeurIPS 2024.
+* [PatternBoost: Constructions in mathematics with a little help from AI](https://arxiv.org/abs/2411.00566), with Adam Wagner, Jordan Ellenberg and Geordie Williamson, generative models for combinatorics, 2024.
+* [Linear algebra with transformers (2021)](https://arxiv.org/abs/2112.01898), solo paper, transformers can learn linear algebra, matrix operations, eigen decomposition, TMLR 2022.
 * [Learning advanced mathematical computations from examples (2020)](https://arxiv.org/abs/2006.06462), with Amaury Hayat and Guillaume Lample: learning proposerties of differential systems, convergence at a critical point (aka the Spectral Mapping Theorem), controllability of overparametrized systems, integrability of some partial differential equations ([code](https://github.com/facebookresearch/MathsFromExamples)), ICLR 2021. 
 * [Deep learning for symbolic mathematics (2019)](https://arxiv.org/abs/1912.01412), with Guillaume Lample: symbolic integration with trasnformers ([code](https://github.com/facebookresearch/SymbolicMathematics)), ICLR 2020.
 
 #### AI for physics
-* [Transforming the bootstrap: Using transformers to compute scattering amplitudes in planar n= 4 super yang-mills theory](https://arxiv.org/abs/2405.06107), with Tianji Cai, Garrett Mertz, Niklas Nolte, Kyle Cranmer, Matthias Wilhelm and Lance Dixon, MLST 2024
+* [Transforming the bootstrap: Using transformers to compute scattering amplitudes in planar n= 4 super yang-mills theory](https://arxiv.org/abs/2405.06107), with Tianji Cai, Garrett Mertz, Niklas Nolte, Kyle Cranmer, Matthias Wilhelm and Lance Dixon, MLST 2024.
   
 
 #### Maths for understanding AI
