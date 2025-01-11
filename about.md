@@ -48,32 +48,32 @@ Full list on [Google scholar](https://scholar.google.com/citations?hl=fr&user=1t
 ### Invited talks
 * December 2024, Yukawa Institute, Kyoto, String Data 2024, Language models for amplitude bootstrap
 * November 2024, University Wisconsin-Madison, Symbolic AI for science
-* November 2024, Collège de France, seminar of Prof. Timothy Gowers,
-* October 2024, Aspen meeting on foundation models, Transformers meet Lyapunov
+* November 2024, Collège de France, seminar of Prof. Timothy Gowers, how do language models learn arithmetic ([video](https://www.youtube.com/watch?v=e0jUi8W4WbI)).
+* October 2024, Aspen meeting on foundation models, Transformers meet Lyapunov.
 * October 2024, Geneva Institute for Theoretical Sciences, Transformers meet Lyapunov.
-* September 2024, AIFI, MIT, Transformers meet Lyapunov.
-* September 2024, Center for Mathematical Science and Applications, Harvard, Transformers meet Lyapunov ()[video](https://www.youtube.com/watch?v=5uq6B8qkUQ0&list=PL0NRmB0fnLJRuFisNS0BmJyTiQsBYroVB&index=60).
+* September 2024, AIFI, MIT, Transformers meet Lyapunov ([video](https://www.youtube.com/watch?v=yCzV97QNG8w)).
+* September 2024, Center for Mathematical Science and Applications, Harvard, Transformers meet Lyapunov ([video](https://www.youtube.com/watch?v=5uq6B8qkUQ0&list=PL0NRmB0fnLJRuFisNS0BmJyTiQsBYroVB&index=60)).
 * June 2024	Niels Bohr Institute, Copenhagen, Language models for amplitude bootstrap.
-* June 2024	Institute for Advanced Study, Princeton, Amplitudes 2024, Language models for amplitude bootstrap.
-* May 2024,	Institut des Hautes Etudes Scientifiques, Math for and by LLM seminar, AI from generated data.
+* June 2024	Institute for Advanced Study, Princeton, Amplitudes 2024, Language models for amplitude bootstrap ([video](https://www.youtube.com/watch?v=kbkm61hWae0)).
+* May 2024,	Institut des Hautes Etudes Scientifiques, Math for and by LLM seminar, AI from generated data ([video](https://www.youtube.com/watch?v=k9xLg-3WfG8)).
 * April 2024, EU coalition for AI in fundamental physics, Amsterdam, plenary talk, Transformers for maths and physics.
 * March 2024, 1st LIPS conference on Language models in the physics, DESY, Hamburg, AI from generated data.
 * February 2024,	Ecole des Ponts, Champs sur Marne, CERMICS seminar, Transformer for maths, maths for transformers.
 * January 2024,	Inter-experiment Machine Learning Workshop, CERN, Mathematics as a translation task.
-* November 2023,	Sydney Mathematical Research Institute, Mathematical challenges in AI, Transformers for maths, maths for transformers. 
+* November 2023,	Sydney Mathematical Research Institute, Mathematical challenges in AI, Transformers for maths, maths for transformers ([video](https://www.youtube.com/watch?v=LW4fKMaIwKg)). 
 * November 2023,	Nancy-Liège workshop on mathematical intuition, Learning mathematics from examples only.
-* September 2023,	Center for Mathematical Science and Applications, Harvard, Transformer for maths, maths for transformer.
+* September 2023,	Center for Mathematical Science and Applications, Harvard, Transformer for maths, maths for transformer ([video](https://www.youtube.com/watch?v=Sc6k06wVX3s)).
 * September 2023, Flatiron Institute, New York, Transformer for maths, maths for transformers.
 * September 2023, Center for Data Science, Courant Institute, New York, Transformer for maths, maths for transformers.
 * September 2023,	University of Geneva, Transformers in mathematics and physics.
 * Juin 2023,	US National Academy of Science, Washington DC, Transformers In mathematics and physics.
-* January 2023, Collège de France, Prof. Stanislas Dehaene seminar, Can Artificial Intelligence model mathematical language?
+* January 2023, Collège de France, Prof. Stanislas Dehaene seminar, Can Artificial Intelligence model mathematical language? ([video](https://www.youtube.com/watch?v=RtB8kVCxJdw)).
 * December 2022, Math & AI workshop, NeurIPS 2022, New Orleans, What is my math transformer doing?
 * October 2022,	Institut Henri Poincaré, Paris, Maths with transformers.
-* September 2022,	Physics Meets ML, online seminar, Maths with transformers.
+* September 2022,	Physics Meets ML, online seminar, Maths with transformers ([video](https://www.youtube.com/watch?v=81o-Uiop5CA)).
 * August 2022,	Weizmann Institute, Rehovot, Hammers and Nails workshop, Transformers for mathematics (and theoretical physics?).
 * April 2022,	Stanford Linear Accelerator (SLAC), Theory and ML group seminar, Maths with transformers.
 * September 2020, Conference on Automatic Interactive Theorem Proving (AITP), Aussois, Deep Learning for Symbolic Mathematics.
 * April 2020, Stanford EE380 Collloquium on computer systems, Deep Learning for Symbolic Mathematics
-([video](https://github.com/user-attachments/assets/d037b529-f92e-48d3-8a06-185916b68234))
+([video](https://www.youtube.com/watch?v=O_sHHG5_lr8))
 
