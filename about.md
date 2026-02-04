@@ -4,7 +4,7 @@ title: A short bio
 permalink: /about/
 ---
 
-I am a Research Engineer at FAIR, Meta, researching the use of language models in mathematics and theoretical physics. I am also affiliated with Ecole des Ponts / CERMICS. I graduated from Ecole Polytechnique in 1987 and ENSAE (Ecole Nationale de la Statistique et de l'Administration Economique) in 1990, majoring in statistics. After a career in media, advertising and software development ([my LinkedIn profile](https://www.linkedin.com/in/fran%C3%A7ois-charton-214187120/), I joined Meta as a Research Engineer, working on AI for mathematics and theoretical physics ([Google Scholar](https://scholar.google.com/citations?hl=fr&user=1tMnd-4AAAAJ&pagesize=80&view_op=list_works)). 
+I am a Research Engineer at Axiom Math, researching the use of language models in mathematics and theoretical physics. I am also affiliated with Ecole des Ponts / CERMICS. I graduated from Ecole Polytechnique in 1987 and ENSAE (Ecole Nationale de la Statistique et de l'Administration Economique) in 1990, majoring in statistics. After a career in media, advertising and software development ([my LinkedIn profile](https://www.linkedin.com/in/fran%C3%A7ois-charton-214187120/), I joined Meta as a Research Engineer, working on AI for mathematics and theoretical physics. I joined Axiom in September 2025. ([Google Scholar](https://scholar.google.com/citations?hl=fr&user=1tMnd-4AAAAJ&pagesize=80&view_op=list_works)). 
 
 I can be reached at [fcharton@gmail.com](mailto:fcharton@gmail.com). My recent scientific news can usually be found on [my twitter account](https://twitter.com/f_charton).
 
@@ -42,7 +42,9 @@ Full list on [Google scholar](https://scholar.google.com/citations?hl=fr&user=1t
 * [SALSA VERDE: a machine learning attack on Learning With Errors with sparse small secrets (2023)](https://arxiv.org/abs/2306.11641), with Cathy Li, Emily Wenger, Zeyuan Allen-Zhu, and Kristin Lauter, NeurIPS 2023
 
 ### Workshops and Programs I co-organized
-* [Mathematics and Machine Learning program](https://cmsa.fas.harvard.edu/event/mml2024/), Harvard CMSA (Autumn 2024), with Michael Douglas (Harvard), Michael Freedman (Harvard), Geordie Williamson (Sydney Mathematicam Research Institute), Fabian Ruehle (Northwestern), ([video](https://www.youtube.com/playlist?list=PL0NRmB0fnLJRuFisNS0BmJyTiQsBYroVB)).
+* [Aarhus workshop on AI and Mathematics](), Aarhus IAS, January 2026, with Gergely Berczi (Aarhus University) and Geordie Williamson (Sydney Mathematical Research Institute)
+* [Oberwolfach mini-workshop on AI and Mathematics](https://www.mfo.de/www/activity/2539a), Oberwolfach, September 2025, with Amaury Hayat (ENPC), Jan de Gier (Melbourne) and Geordie Williamson (Sydney Mathematical Research Institute)
+* [Mathematics and Machine Learning program](https://cmsa.fas.harvard.edu/event/mml2024/), Harvard CMSA (Autumn 2024), with Michael Douglas (Harvard), Michael Freedman (Harvard), Geordie Williamson (Sydney Mathematical Research Institute), Fabian Ruehle (Northwestern), ([video](https://www.youtube.com/playlist?list=PL0NRmB0fnLJRuFisNS0BmJyTiQsBYroVB)).
 * [Maths for and by large language models](https://www.youtube.com/playlist?list=PLx5f8IelFRgHrJ9W6_fbfO3ahDrXMEIWn), IHES, May 2024, with Michael Douglas (Harvard) and Yiannis Vlassopoulos (IHES).
 
 ### Invited talks
